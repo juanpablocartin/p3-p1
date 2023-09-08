@@ -15,4 +15,3 @@ public class Principal {
 //right click (proyecto1P3)
 // Git
 //Commit
-//Push
