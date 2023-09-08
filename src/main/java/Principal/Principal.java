@@ -2,5 +2,17 @@ package Principal;
 public class Principal {
     public static void main(String[] args) {
         System.out.println("Hello World!");
+                System.out.println("Hello World!");
+
     }
 }
+// Antes de empezar a trabajar:
+//right click (proyecto1P3)
+//Git
+//remote
+//pull
+//Ya cuando quieran guardar algun cambio:
+//right click (proyecto1P3)
+// Git
+//Commit
+//Push
