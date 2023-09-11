@@ -32,5 +32,15 @@ public class ModelTabTipeInstrument {
         modelo.addColumn("Nombre");
         modelo.addColumn("Unidad");
     }
+    public void insertarFilaModelo(Object[] fila){
+        modelo.addRow(fila);
+    }
+    public void insertarTipoInstrumento(TipoInstrumento t){
+        this.lista.ingresaTipoInstrumento(t);
+        this.insertarFilaModelo(this.lista.retornFila(this.lista.getCantidad()-1));
+    }
+    
+    public DefaultTableModel getModelo(){return modelo;}
+    public ListaTipoInstrumento getLista(){return this.lista;}
 
 }
