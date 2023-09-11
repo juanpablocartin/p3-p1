@@ -4,6 +4,10 @@
  */
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Carlos
@@ -265,7 +269,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addGap(1, 1, 1)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jDesktopPane1.getAccessibleContext().setAccessibleName("");
@@ -295,6 +299,47 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBusquedaActionPerformed
 
+    public void setBotonLimpiar(JButton BotonLimpiar) {
+        this.BotonLimpiar = BotonLimpiar;
+    }
+
+    public void setBotonBorrar(JButton botonBorrar) {
+        this.botonBorrar = botonBorrar;
+    }
+
+    public void setBotonBusqueda(JButton botonBusqueda) {
+        this.botonBusqueda = botonBusqueda;
+    }
+
+    public void setBotonGuardar(JButton botonGuardar) {
+        this.botonGuardar = botonGuardar;
+    }
+
+    public void setBotonReporte(JButton botonReporte) {
+        this.botonReporte = botonReporte;
+    }
+
+    public void setCodeTextField(JTextField codeTextField) {
+        this.codeTextField = codeTextField;
+    }
+
+    public void setNombreBusquedaTField(JTextField nombreBusquedaTField) {
+        this.nombreBusquedaTField = nombreBusquedaTField;
+    }
+
+    public void setNombreTextField(JTextField nombreTextField) {
+        this.nombreTextField = nombreTextField;
+    }
+
+    public void setTablaListTipeInstrument(JTable tablaListTipeInstrument) {
+        this.tablaListTipeInstrument = tablaListTipeInstrument;
+    }
+
+    public void setUnidadTextField(JTextField unidadTextField) {
+        this.unidadTextField = unidadTextField;
+    }
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonLimpiar;
