@@ -30,13 +30,6 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        codeTextField = new javax.swing.JTextField();
-        nombreTextField = new javax.swing.JTextField();
-        unidadTextField = new javax.swing.JTextField();
         botonGuardar = new javax.swing.JButton();
         BotonLimpiar = new javax.swing.JButton();
         botonBorrar = new javax.swing.JButton();
@@ -51,72 +44,13 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         tablaListTipeInstrument = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-
-        jDesktopPane1.setBackground(new java.awt.Color(30, 30, 30));
-        jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jDesktopPane1.setToolTipText("Tipo Instrumento");
-        jDesktopPane1.setName(""); // NOI18N
-
-        jLabel1.setText("Código");
-
-        jLabel2.setText("Nombre");
-
-        jLabel3.setText("Unidad");
-
-        unidadTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                unidadTextFieldActionPerformed(evt);
-            }
-        });
-
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(codeTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(nombreTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(unidadTextField, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(codeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(nombreTextField)))
-                .addGap(42, 42, 42)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(unidadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)
-                        .addComponent(codeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(unidadTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 13, Short.MAX_VALUE))))
-        );
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
 
         botonGuardar.setText("Guardar");
 
@@ -224,6 +158,59 @@ public class TipInstruJPanel extends javax.swing.JPanel {
 
         jLabel7.setText("Listado");
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jLabel1.setText("Código");
+
+        jLabel2.setText("Nombre");
+
+        jLabel3.setText("Unidad");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(71, 71, 71)
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,21 +218,25 @@ public class TipInstruJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(botonGuardar)
-                                .addGap(35, 35, 35)
-                                .addComponent(BotonLimpiar))
-                            .addComponent(botonBorrar)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(botonGuardar)
+                                        .addGap(35, 35, 35)
+                                        .addComponent(BotonLimpiar))
+                                    .addComponent(botonBorrar))))
+                        .addContainerGap(13, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,8 +251,8 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                             .addComponent(BotonLimpiar))
                         .addGap(18, 18, 18)
                         .addComponent(botonBorrar))
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addGap(5, 5, 5)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -269,15 +260,13 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel7)
                 .addGap(1, 1, 1)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jDesktopPane1.getAccessibleContext().setAccessibleName("");
     }// </editor-fold>//GEN-END:initComponents
 
-    private void unidadTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadTextFieldActionPerformed
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_unidadTextFieldActionPerformed
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void BotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiarActionPerformed
         // TODO add your handling code here:
@@ -320,7 +309,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     }
 
     public void setCodeTextField(JTextField codeTextField) {
-        this.codeTextField = codeTextField;
+        this.jTextField1 = codeTextField;
     }
 
     public void setNombreBusquedaTField(JTextField nombreBusquedaTField) {
@@ -328,7 +317,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     }
 
     public void setNombreTextField(JTextField nombreTextField) {
-        this.nombreTextField = nombreTextField;
+        this.jTextField2 = nombreTextField;
     }
 
     public void setTablaListTipeInstrument(JTable tablaListTipeInstrument) {
@@ -336,7 +325,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     }
 
     public void setUnidadTextField(JTextField unidadTextField) {
-        this.unidadTextField = unidadTextField;
+        this.jTextField3 = unidadTextField;
     }
 
     
@@ -347,8 +336,6 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonReporte;
-    private javax.swing.JTextField codeTextField;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -358,10 +345,12 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField nombreBusquedaTField;
-    private javax.swing.JTextField nombreTextField;
     private javax.swing.JTable tablaListTipeInstrument;
-    private javax.swing.JTextField unidadTextField;
     // End of variables declaration//GEN-END:variables
 }
