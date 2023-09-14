@@ -1,5 +1,6 @@
 package Controladora;
 
+import Modelo.ModelTabINSTRUMENTOS;
 import Vista.CalibracionesJPanel;
 import Vista.InstruJPanel;
 import Vista.TipInstruJPanel;
@@ -18,16 +19,21 @@ public class Controladora implements ActionListener {
     private CalibracionesJPanel PanCali;
     public boolean BOOLcali=false;
     
+    private ModelTabINSTRUMENTOS admiinstru;
+    
     public Controladora(VenPri v,TipInstruJPanel ti,InstruJPanel i,CalibracionesJPanel c){
         this.VenPricipal=v;
         v.setVisible(true);
+        
         this.PanTIPOSInstru=ti;
         this.PanInstru=i;
         this.PanCali=c;
-        
         VenPricipal.getTABpri().addTab("Tipos de Instrumentos", PanTIPOSInstru);
         VenPricipal.getTABpri().addTab("Instrumentos", PanInstru);
         VenPricipal.getTABpri().addTab("Calibraciones", PanCali);
+        
+        admiinstru=new ModelTabINSTRUMENTOS();
+        i.getTablaDInstrumentos().setModel(admiinstru.getModelito());
     }
 
     @Override
