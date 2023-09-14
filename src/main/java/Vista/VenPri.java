@@ -1,6 +1,6 @@
 package Vista;
 
-import Con.Controladora;
+import Principal.Controladora;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTabbedPane;
