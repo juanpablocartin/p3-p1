@@ -1,4 +1,4 @@
-package Vista;
+package Vista;//GEN-LINE:variables
 
 import Controladora.Controladora;
 import javax.swing.JButton;
@@ -18,7 +18,7 @@ public class VenPri extends javax.swing.JFrame {
     
     
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         TABpri = new javax.swing.JTabbedPane();
@@ -37,7 +37,7 @@ public class VenPri extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     public static void main(String args[]) {
 
@@ -52,7 +52,7 @@ public class VenPri extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     public javax.swing.JTabbedPane TABpri;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
