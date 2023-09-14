@@ -4,6 +4,7 @@
  */
 package Modelo;
 
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -42,5 +43,11 @@ public class ModelTabTipeInstrument {
     
     public DefaultTableModel getModelo(){return modelo;}
     public ListaTipoInstrumento getLista(){return this.lista;}
-
+    
+     public void modificaCOMBOBOX(JComboBox<String> c){
+        c.removeAllItems();
+        for (int i = 0; i < lista.getCantidad(); i++){
+             c.addItem(lista.getElementoJP(i).getNombre());
+        }
+    }
 }

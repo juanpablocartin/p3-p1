@@ -106,4 +106,7 @@ public class ListaTipoInstrumento {
         }
         return fila;
     }
+    public TipoInstrumento  getElementoJP(int i){
+        return lista.get(i);
+   }
 }

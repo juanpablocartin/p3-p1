@@ -13,7 +13,7 @@ public class InstruJPanel extends javax.swing.JPanel {
     public InstruJPanel() {
         initComponents();
     }
-
+    
     public JButton getbBorrar() {
         return bBorrar;
     }
