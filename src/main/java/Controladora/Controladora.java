@@ -105,7 +105,3 @@ public class Controladora implements ActionListener {
 
 }
 //////////  Lest seee
-//hola
-//hola2
-//hola3
-// hola hola
