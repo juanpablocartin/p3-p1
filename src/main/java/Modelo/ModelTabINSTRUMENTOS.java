@@ -5,6 +5,7 @@ import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 public class ModelTabINSTRUMENTOS {
+    
     private  DefaultTableModel modelito;
     private ListaINSTRUMENTOS lis; 
 
@@ -43,9 +44,9 @@ public class ModelTabINSTRUMENTOS {
          lis.eliminarElemento(linea);
    }
       //--------------------------------------------------------------------------------------------------------
-   DefaultTableModel getModelo(){
-        return modelito;
-   }
+   //DefaultTableModel getModelo(){
+     //   return modelito;
+   //}
         //--------------------------------------------------------------
       public  void inicializarModelo(){
             for (int i = 0; i < lis.getCantidad(); i++)      {

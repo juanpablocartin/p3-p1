@@ -1,21 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Modelo;
 
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Carlos
- */
 public class ModelTabTipeInstrument {
 
     private DefaultTableModel modelo;
     private ListaTipoInstrumento lista;
 
+    public DefaultTableModel getModelo(){
+        return modelo;
+    }
     public ModelTabTipeInstrument() {
         modelo = new DefaultTableModel();
         lista = new ListaTipoInstrumento();
@@ -34,15 +29,14 @@ public class ModelTabTipeInstrument {
         modelo.addColumn("Nombre");
         modelo.addColumn("Unidad");
     }
-    public void insertarFilaModelo(Object[] fila){
-        modelo.addRow(fila);
-    }
     public void insertarTipoInstrumento(TipoInstrumento t){
         this.lista.ingresaTipoInstrumento(t);
         this.insertarFilaModelo(this.lista.retornFila(this.lista.getCantidad()-1));
     }
+    public void insertarFilaModelo(Object[] fila){
+        modelo.addRow(fila);
+    }
     
-    public DefaultTableModel getModelo(){return modelo;}
     public ListaTipoInstrumento getLista(){return this.lista;}
 //-------------------------------------------------------------------------------------- 
      public void modificaCOMBOBOX(JComboBox<String> c){
@@ -50,6 +44,7 @@ public class ModelTabTipeInstrument {
         for (int i = 0; i < lista.getCantidad(); i++){
              c.addItem(lista.getElementoJP(i).getNombre());
         }
+        c.setSelectedIndex(-1);
     }
      public  void inicializarModelo(){
          for (int i = 0; i < lista.getCantidad(); i++)      {

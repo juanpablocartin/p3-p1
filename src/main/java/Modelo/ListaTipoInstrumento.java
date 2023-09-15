@@ -18,7 +18,8 @@ public class ListaTipoInstrumento {
 //-----------------------------------------------------------------------------------
     
     public ListaTipoInstrumento() {
-        lista = new ArrayList();
+        this.lista = new ArrayList();
+        this.inicializarLista();
     }
     
 //-----------------------------------------------------------------------------------

@@ -55,7 +55,7 @@ public class ListaINSTRUMENTOS  {
    }
     //-------------------------------------------------------------------------------------------       
       public  void     inicializarLista(){
-          TipoInstrumento ti=new TipoInstrumento("111","Tipo de Instrumento Demo","Grados C");
+          TipoInstrumento ti=new TipoInstrumento("11771","Tipo de Instrumento Demo2","Grados F");
                  Instrumento e= new Instrumento ("111","Descripcion del Instrumento",2,4,1,ti); list.add(e);
        }
    //---------------------------------------------------------------------------------------------
