@@ -18,7 +18,8 @@ public class ListaTipoInstrumento {
 //-----------------------------------------------------------------------------------
     
     public ListaTipoInstrumento() {
-        lista = new ArrayList();
+        this.lista = new ArrayList();
+        this.inicializarLista();
     }
     
 //-----------------------------------------------------------------------------------
@@ -106,4 +107,12 @@ public class ListaTipoInstrumento {
         }
         return fila;
     }
+    public TipoInstrumento  getElementoJP(int i){
+        return lista.get(i);
+   }
+    public  void     inicializarLista(){
+        TipoInstrumento tii=new TipoInstrumento("111","Tipo de Instrumento Demo","Grados C");
+        lista.add(tii);
+    }
+    
 }
