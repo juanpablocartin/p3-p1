@@ -13,7 +13,7 @@ public class ListaINSTRUMENTOS  {
     
  //-------------------------------------------------------------------------------------------
    public   Object [ ]  creaFilallena (Instrumento e) {  
-           Object [ ] filAux= new Object  [ 10 ] ; 
+           Object [ ] filAux= new Object  [ 6 ] ; 
             filAux[0]= e.getSerie();
             filAux[1]= e.getDescripcion();
             filAux[2]= e.getMin();

@@ -109,4 +109,9 @@ public class ListaTipoInstrumento {
     public TipoInstrumento  getElementoJP(int i){
         return lista.get(i);
    }
+    public  void     inicializarLista(){
+        TipoInstrumento tii=new TipoInstrumento("111","Tipo de Instrumento Demo","Grados C");
+        lista.add(tii);
+    }
+    
 }

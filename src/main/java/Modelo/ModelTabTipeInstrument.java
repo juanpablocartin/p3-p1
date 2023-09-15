@@ -20,6 +20,7 @@ public class ModelTabTipeInstrument {
         modelo = new DefaultTableModel();
         lista = new ListaTipoInstrumento();
         this.darFormato();
+        this.inicializarModelo();
     }
 
     public ModelTabTipeInstrument(ListaTipoInstrumento lista) {
@@ -43,11 +44,18 @@ public class ModelTabTipeInstrument {
     
     public DefaultTableModel getModelo(){return modelo;}
     public ListaTipoInstrumento getLista(){return this.lista;}
-    
+//-------------------------------------------------------------------------------------- 
      public void modificaCOMBOBOX(JComboBox<String> c){
         c.removeAllItems();
         for (int i = 0; i < lista.getCantidad(); i++){
              c.addItem(lista.getElementoJP(i).getNombre());
         }
+    }
+     public  void inicializarModelo(){
+         for (int i = 0; i < lista.getCantidad(); i++)      {
+               Object [ ] filAux=  lista.retornFila(i);
+                modelo.addRow(filAux);
+        }
+              
     }
 }

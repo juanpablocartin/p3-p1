@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class ModelTabINSTRUMENTOS {
     private  DefaultTableModel modelito;
-        private ListaINSTRUMENTOS lis; 
+    private ListaINSTRUMENTOS lis; 
 
 //---------------------------------------------------------------------------
     public DefaultTableModel getModelito() {
@@ -14,11 +14,10 @@ public class ModelTabINSTRUMENTOS {
     }  
   //--------------------------------------------------------------------
         public ModelTabINSTRUMENTOS() {
-               modelito= new DefaultTableModel();
-               lis= new ListaINSTRUMENTOS();  
-               //datos por defecto
-               darFormatoModelo();
-               inicializarModelo(); // el modelo se carga aqui
+               this.modelito= new DefaultTableModel();
+               this.lis= new ListaINSTRUMENTOS();  
+               this.darFormatoModelo();
+               this.inicializarModelo(); 
         }
    //--------------------------------------------------------------------
         public void  darFormatoModelo() {
@@ -49,10 +48,10 @@ public class ModelTabINSTRUMENTOS {
    }
         //--------------------------------------------------------------
       public  void inicializarModelo(){
-         for (int i = 0; i < lis.getCantidad(); i++)      {
-               Object [ ] filAux=  lis.retornaFila (i);  // le pido una fila a miArray
+            for (int i = 0; i < lis.getCantidad(); i++)      {
+                Object [ ] filAux=  lis.retornaFila (i);
                 modelito.addRow(filAux);
-        }
+            }
               
        }
  
