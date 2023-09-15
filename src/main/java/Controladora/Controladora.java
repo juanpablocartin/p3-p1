@@ -105,4 +105,6 @@ public class Controladora implements ActionListener {
 
 }
 //////////  Lest seee
-//Rama de desarrollo carlo s
+// hola
+//hola
+//holaaaaaa que dolor
