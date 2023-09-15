@@ -21,6 +21,10 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         initComponents();
     }
 
+    public JTable getTablaListTipeInstrument() {
+        return tablaListTipeInstrument;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -357,6 +361,6 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField nombreBusquedaTField;
-    private javax.swing.JTable tablaListTipeInstrument;
+    public javax.swing.JTable tablaListTipeInstrument;
     // End of variables declaration//GEN-END:variables
 }
