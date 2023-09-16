@@ -1,5 +1,6 @@
 package Controladora;
 
+import Modelo.Instrumento;
 import Modelo.ListaTipoInstrumento;
 import Modelo.ModelTabINSTRUMENTOS;
 import Modelo.ModelTabTipeInstrument;
@@ -10,6 +11,8 @@ import Vista.TipInstruJPanel;
 import Vista.VenPri;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class Controladora implements ActionListener {
@@ -27,7 +30,6 @@ public class Controladora implements ActionListener {
     private ModelTabTipeInstrument admiTIPOSinstru;
     //------------------------------------------------
     private ListaTipoInstrumento listaTipos;
-  
 
     //Lista global de tipos de instrumentos
     //-------------------------------------------------
@@ -61,6 +63,8 @@ public class Controladora implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //-----------------------------------------Panel Tipo de Instrumento-----------------------------------------------------
+
         if (e.getSource().equals(this.PanTIPOSInstru.getBotonGuardar())) {
             if (this.PanTIPOSInstru.getCodigoTextField().getText().equals("") || this.PanTIPOSInstru.getNombreTextField().getText().equals("") || this.PanTIPOSInstru.getUnidadTexttField().getText().equals("")) {
                 JOptionPane.showMessageDialog(this.VenPricipal, "Debes completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
@@ -87,9 +91,36 @@ public class Controladora implements ActionListener {
                 this.PanTIPOSInstru.getBotonBorrar().setEnabled(false);
             }
         }
-      
-//--------------------------------------------------------------------------------
+        if (e.getSource().equals(this.PanTIPOSInstru.getBotonBorrar())) {
+            if (this.PanTIPOSInstru.getCodigoTextField().isEnabled()) {
+                ArrayList<Instrumento> lista = this.admiinstru.getLista().getArrayList();
+                Iterator<Instrumento> itr = lista.iterator();
+                int cant = 0;
+                while (itr.hasNext()) {
+                    if (itr.next().getTipDinstrumentos().getCodigo().equals(this.PanTIPOSInstru.getCodigoTextField().getText())) {
+                        cant++;
+                    }
+                }
+                if (cant != 0) {
+                    JOptionPane.showMessageDialog(this.VenPricipal, "No se puede eliminar el tipo de instrumento. El sistema cuenta con " + cant + this.PanTIPOSInstru.getNombreTextField().getText(), "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    this.listaTipos.getLista().remove(this.listaTipos.getElementoPos(this.PanTIPOSInstru.getCodigoTextField().getText()));
+                    JOptionPane.showMessageDialog(this.VenPricipal, "Tipo de instrumento eliminado con exito", "Eliminación de Tipo de Insttrumento", JOptionPane.INFORMATION_MESSAGE);
+                    this.PanTIPOSInstru.getCodigoTextField().setText("");
+                    this.PanTIPOSInstru.getNombreTextField().setText("");
+                    this.PanTIPOSInstru.getUnidadTexttField().setText("");
+                    this.PanTIPOSInstru.getBotonBorrar().setEnabled(false);
 
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this.VenPricipal, "Selecciona un Tipo de instrumento ", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        //------------------------------------------------------Fin panel Tipo de Instrumento--------------------------------------------------------------------------------------------
+        //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------
         if (e.getSource().equals(PanInstru.getbGuardar())) {
             if (PanInstru.getTxSerie().getText().equals("") || PanInstru.getTxTolerancia().getText().equals("") || PanInstru.getTxMin().getText().equals("") || PanInstru.getTxMax().getText().equals("") || PanInstru.getTxDescripcion().getText().equals("") || PanInstru.getTxCB_Tipo().getSelectedIndex() == -1) {
