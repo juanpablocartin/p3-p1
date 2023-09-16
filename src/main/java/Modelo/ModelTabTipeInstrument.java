@@ -19,9 +19,16 @@ public class ModelTabTipeInstrument {
     }
 
     public ModelTabTipeInstrument(ListaTipoInstrumento lista) {
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               return false;
+            }
+            
+        };
         this.lista = lista;
         this.darFormato();
+        
     }
 
     private void darFormato() {
@@ -32,6 +39,7 @@ public class ModelTabTipeInstrument {
     public void insertarTipoInstrumento(TipoInstrumento t){
         this.lista.ingresaTipoInstrumento(t);
         this.insertarFilaModelo(this.lista.retornFila(this.lista.getCantidad()-1));
+        
     }
     public void insertarFilaModelo(Object[] fila){
         modelo.addRow(fila);
@@ -53,4 +61,5 @@ public class ModelTabTipeInstrument {
         }
               
     }
+   
 }

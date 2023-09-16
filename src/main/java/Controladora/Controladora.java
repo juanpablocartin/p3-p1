@@ -74,6 +74,7 @@ public class Controladora implements ActionListener {
                 t.setNombre(this.PanTIPOSInstru.getNombreTextField().getText());
                 t.setUnidad(this.PanTIPOSInstru.getUnidadTexttField().getText());
                 this.admiTIPOSinstru.insertarTipoInstrumento(t);
+                JOptionPane.showMessageDialog(this.VenPricipal, t.getNombre() + " ingresado al sistemas", "Gardar", JOptionPane.INFORMATION_MESSAGE);
 
                 this.PanTIPOSInstru.getCodigoTextField().setText("");
                 this.PanTIPOSInstru.getNombreTextField().setText("");
