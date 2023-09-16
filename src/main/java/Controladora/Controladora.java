@@ -52,12 +52,17 @@ public class Controladora implements ActionListener {
         i.getTablaDInstrumentos().setModel(admiinstru.getModelito());
         //En el evento de ADD Tipo de Instrumento se tiene que agregar la siguiente liniea de codigo
         admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
+        
         ///////Todo lo que va a escuchar/////////////
-        PanInstru.getbGuardar().addActionListener(this);
-        ///////Todo lo que va a escuchar/////////////
-
+        this.PanInstru.getbGuardar().addActionListener(this);
+        this.PanInstru.getbLimpiar().addActionListener(this);
+        this.PanInstru.getbBorrar().addActionListener(this);
+        this.PanInstru.getbBuscar().addActionListener(this);
+        this.PanInstru.getbReporte().addActionListener(this);
+        
         this.PanTIPOSInstru.getBotonGuardar().addActionListener(this);
         this.PanTIPOSInstru.getBotonLimpiar().addActionListener(this);
+        ///////Todo lo que va a escuchar/////////////
 
     }
 
@@ -76,6 +81,7 @@ public class Controladora implements ActionListener {
                 this.admiTIPOSinstru.insertarTipoInstrumento(t);
                 JOptionPane.showMessageDialog(this.VenPricipal, t.getNombre() + " ingresado al sistemas", "Gardar", JOptionPane.INFORMATION_MESSAGE);
 
+                admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
                 this.PanTIPOSInstru.getCodigoTextField().setText("");
                 this.PanTIPOSInstru.getNombreTextField().setText("");
                 this.PanTIPOSInstru.getUnidadTexttField().setText("");
@@ -127,32 +133,30 @@ public class Controladora implements ActionListener {
             if (PanInstru.getTxSerie().getText().equals("") || PanInstru.getTxTolerancia().getText().equals("") || PanInstru.getTxMin().getText().equals("") || PanInstru.getTxMax().getText().equals("") || PanInstru.getTxDescripcion().getText().equals("") || PanInstru.getTxCB_Tipo().getSelectedIndex() == -1) {
                 JOptionPane.showMessageDialog(null, "Debes completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                System.out.println("GOOD");
+                Instrumento auxInstru=new Instrumento(
+                        PanInstru.getTxSerie().getText(),
+                        PanInstru.getTxDescripcion().getText(),
+                        Integer.parseInt(PanInstru.getTxMin().getText()),
+                        Integer.parseInt(PanInstru.getTxMax().getText()),
+                        Integer.parseInt(PanInstru.getTxTolerancia().getText()),
+                        this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()));
+                admiinstru.insertarInstru(auxInstru);
+                
             }
             return;
         }
 //--------------------------------------------------------------------------------
-//        if (e.getSource().equals( pc.getButActua())) {
-//
-//                  if (pc.getTabCiudades().getSelectedRow() == -1)    {
-//                         JOptionPane.showMessageDialog(null, "Debes elegir la fila a actalizar", "Error", JOptionPane.ERROR_MESSAGE);
-//                  }
-//                  else   {
-//                      
-//                            JOptionPane.showMessageDialog(null, "El espacio de ID esta lleno pero tamabien puede ser editado -es una guia-", "Nota", JOptionPane.INFORMATION_MESSAGE);
-//                            pc.getID().setText(admiMod.getLista().getElemento(pc.getTabCiudades().getSelectedRow()).getID());
-//                            pc.getNombreADD().setText("");
-//                            pc.getGMT().setSelectedIndex(-1);
-//                            
-//                        
-//                       if (pc.getID().getText().equals ("")  ||  pc.getNombreADD().getText().equals ("") || pc.getGMT().getSelectedItem().equals(-1) ){
-//                            JOptionPane.showMessageDialog(null, "Debes completar todos los campos para Actualizar", "Error", JOptionPane.ERROR_MESSAGE);
-//                        }
-//                       admiMod.update(pc.getTabCiudades().getSelectedRow(), pc.getID().getText(), pc.getNombreADD().getText(), Integer.parseInt(pc.getGMT().getSelectedItem().toString()));
-//                  }
-//                  return;
-//        } 
-////--------------------------------------------------------------------------------
+        if (e.getSource().equals(PanInstru.getbLimpiar())){
+            PanInstru.getTxSerie().setText("");
+            PanInstru.getTxTolerancia().setText("");
+            PanInstru.getTxMin().setText("");
+            PanInstru.getTxMax().setText("");
+            PanInstru.getTxDescripcion().setText("");
+            PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+                  
+                  return;
+        } 
+//--------------------------------------------------------------------------------
 //        if (e.getSource().equals( pc.getButBusc())) {
 //
 //                  if (pc.getNombreBUS().getText().equals (""))    {
@@ -163,8 +167,8 @@ public class Controladora implements ActionListener {
 //                         JOptionPane.showMessageDialog(null, "Ese Nombre no esta registrado", "Error", JOptionPane.ERROR_MESSAGE);
 //                      }
 //                      else{
-//                          //System.out.println("Okay");
-//                          //admiMod.selectATindex(admiMod.getIndexDEnombre(pc.getNombreBUS().getText())); 
+//                          System.out.println("Okay");
+//                          admiMod.selectATindex(admiMod.getIndexDEnombre(pc.getNombreBUS().getText())); 
 //                          JOptionPane.showMessageDialog(null, admiMod.infoDobjeto(admiMod.getIndexDEnombre(pc.getNombreBUS().getText())), "Exito", JOptionPane.INFORMATION_MESSAGE);
 //                        }
 //                  }

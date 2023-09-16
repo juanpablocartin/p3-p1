@@ -58,8 +58,15 @@ public class ModelTabTipeInstrument {
          for (int i = 0; i < lista.getCantidad(); i++)      {
                Object [ ] filAux=  lista.retornFila(i);
                 modelo.addRow(filAux);
-        }
-              
+        }      
     }
+     public TipoInstrumento getTipDinstruXnombre(String s){
+        for (int i = 0; i < lista.getCantidad(); i++)      {
+               if(lista.getElementoJP(i).getNombre().equals(s)){
+                   return lista.getElementoJP(i);
+               }
+        }
+        return null;
+     }
    
 }
