@@ -98,5 +98,22 @@ public class ModelTabINSTRUMENTOS {
         modelito.removeRow(index);
         insertarFilaModelo(  lis. retornaFila (lis.getINDEX(lis.getElemento(index))) );
     }
+    public String getSerieDEdecripcionX(String s){
+        for (int i = 0; i < lis.getCantidad(); i++)      {
+                if(lis.getElemento (i).getDescripcion().equals(s)){  
+                    return lis.getElemento (i).getSerie();
+               }
+        }
+        return "";
+    }
+    public boolean BuscarXserie(String s){
+        for (int i = 0; i < lis.getCantidad(); i++) {
+            if (lis.getElemento(i).getSerie().equals(s)) {
+                return true;
+            }
+        }
+         return false;
+    }
+  
    
 }

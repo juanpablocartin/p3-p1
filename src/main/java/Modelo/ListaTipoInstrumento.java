@@ -111,7 +111,15 @@ public class ListaTipoInstrumento {
         return lista.get(i);
    }
     public  void     inicializarLista(){
-        TipoInstrumento tii=new TipoInstrumento("111","Tipo de Instrumento Demo","Grados C");
+        TipoInstrumento tii=new TipoInstrumento("111","Tipo de Instrumento 111","Grados C");
+        lista.add(tii);
+        tii=new TipoInstrumento("222","Tipo de Instrumento 222","Grados C");
+        lista.add(tii);
+        tii=new TipoInstrumento("333","Tipo de Instrumento 333","Grados C");
+        lista.add(tii);
+        tii=new TipoInstrumento("444","Tipo de Instrumento 444","Grados C");
+        lista.add(tii);
+        tii=new TipoInstrumento("555","Tipo de Instrumento 555","Grados C");
         lista.add(tii);
     }
     
