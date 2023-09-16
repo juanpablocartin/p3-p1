@@ -68,5 +68,13 @@ public class ModelTabTipeInstrument {
         }
         return null;
      }
+     public int getIndexDtipoInstruXcodigo(String s){
+         for (int i = 0; i < lista.getCantidad(); i++) {
+             if (lista.getElementoJP(i).getCodigo().equals(s)) {
+                 return i;
+             }
+         }
+         return -1;
+     }
    
 }
