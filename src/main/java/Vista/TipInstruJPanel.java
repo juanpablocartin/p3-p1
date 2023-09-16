@@ -19,6 +19,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
      */
     public TipInstruJPanel() {
         initComponents();
+        this.botonBorrar.setEnabled(false);
     }
 
     public JTable getTablaListTipeInstrument() {
@@ -40,7 +41,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        nombreBusquedaTField = new javax.swing.JTextField();
+        nombreBusquedaTextFiled = new javax.swing.JTextField();
         botonReporte = new javax.swing.JButton();
         botonBusqueda = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -50,11 +51,11 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        codigoTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        nombreTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        unidadTexttField = new javax.swing.JTextField();
 
         botonGuardar.setText("Guardar");
 
@@ -78,9 +79,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
 
         jLabel5.setText("Nombre");
 
-        nombreBusquedaTField.addActionListener(new java.awt.event.ActionListener() {
+        nombreBusquedaTextFiled.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreBusquedaTFieldActionPerformed(evt);
+                nombreBusquedaTextFiledActionPerformed(evt);
             }
         });
 
@@ -106,7 +107,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(nombreBusquedaTField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(nombreBusquedaTextFiled, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
                 .addComponent(botonReporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -120,7 +121,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel5)
-                        .addComponent(nombreBusquedaTField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(nombreBusquedaTextFiled, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(botonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(botonBusqueda))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -166,9 +167,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
 
         jLabel1.setText("Código");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        codigoTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                codigoTextFieldActionPerformed(evt);
             }
         });
 
@@ -176,9 +177,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
 
         jLabel3.setText("Unidad");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        unidadTexttField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                unidadTexttFieldActionPerformed(evt);
             }
         });
 
@@ -192,15 +193,15 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(71, 71, 71)
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(unidadTexttField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -210,14 +211,14 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(codigoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(unidadTexttField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombreTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
 
@@ -270,9 +271,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void unidadTexttFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_unidadTexttFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_unidadTexttFieldActionPerformed
 
     private void BotonLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonLimpiarActionPerformed
         // TODO add your handling code here:
@@ -282,9 +283,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBorrarActionPerformed
 
-    private void nombreBusquedaTFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreBusquedaTFieldActionPerformed
+    private void nombreBusquedaTextFiledActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreBusquedaTextFiledActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreBusquedaTFieldActionPerformed
+    }//GEN-LAST:event_nombreBusquedaTextFiledActionPerformed
 
     private void botonReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonReporteActionPerformed
         // TODO add your handling code here:
@@ -294,9 +295,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_botonBusquedaActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void codigoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_codigoTextFieldActionPerformed
 
     public void setBotonLimpiar(JButton BotonLimpiar) {
         this.BotonLimpiar = BotonLimpiar;
@@ -319,15 +320,15 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     }
 
     public void setCodeTextField(JTextField codeTextField) {
-        this.jTextField1 = codeTextField;
+        this.codigoTextField = codeTextField;
     }
 
     public void setNombreBusquedaTField(JTextField nombreBusquedaTField) {
-        this.nombreBusquedaTField = nombreBusquedaTField;
+        this.nombreBusquedaTextFiled = nombreBusquedaTField;
     }
 
     public void setNombreTextField(JTextField nombreTextField) {
-        this.jTextField2 = nombreTextField;
+        this.nombreTextField = nombreTextField;
     }
 
     public void setTablaListTipeInstrument(JTable tablaListTipeInstrument) {
@@ -335,7 +336,43 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     }
 
     public void setUnidadTextField(JTextField unidadTextField) {
-        this.jTextField3 = unidadTextField;
+        this.unidadTexttField = unidadTextField;
+    }
+
+    public JButton getBotonLimpiar() {
+        return BotonLimpiar;
+    }
+
+    public JButton getBotonBorrar() {
+        return botonBorrar;
+    }
+
+    public JButton getBotonBusqueda() {
+        return botonBusqueda;
+    }
+
+    public JButton getBotonGuardar() {
+        return botonGuardar;
+    }
+
+    public JButton getBotonReporte() {
+        return botonReporte;
+    }
+    
+    public JTextField getCodigoTextField() {
+        return codigoTextField;
+    }
+
+    public JTextField getNombreBusquedaTextFiled() {
+        return nombreBusquedaTextFiled;
+    }
+
+    public JTextField getNombreTextField() {
+        return nombreTextField;
+    }
+
+    public JTextField getUnidadTexttField() {
+        return unidadTexttField;
     }
 
     
@@ -346,6 +383,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private javax.swing.JButton botonBusqueda;
     private javax.swing.JButton botonGuardar;
     private javax.swing.JButton botonReporte;
+    private javax.swing.JTextField codigoTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -357,10 +395,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField nombreBusquedaTField;
+    private javax.swing.JTextField nombreBusquedaTextFiled;
+    private javax.swing.JTextField nombreTextField;
     public javax.swing.JTable tablaListTipeInstrument;
+    private javax.swing.JTextField unidadTexttField;
     // End of variables declaration//GEN-END:variables
 }
