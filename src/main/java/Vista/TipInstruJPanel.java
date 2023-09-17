@@ -140,6 +140,11 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaListTipeInstrument.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaListTipeInstrumentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaListTipeInstrument);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -298,6 +303,10 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private void codigoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_codigoTextFieldActionPerformed
+
+    private void tablaListTipeInstrumentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListTipeInstrumentMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaListTipeInstrumentMouseClicked
 
     public void setBotonLimpiar(JButton BotonLimpiar) {
         this.BotonLimpiar = BotonLimpiar;
