@@ -252,7 +252,7 @@ public class Controladora implements ActionListener {
     }
 
 }
-//////////  Lest seee
-//hola
-//hola
-//hola hola
+//estando en la que quiero cambiar "PULL" de esa misma rama pero del git
+//despues mearge revision y seleciono el ultimo comite de donde voy a sacr la info nueva 
+//despues accepto o no cosas 
+//y despues comit+push con los cambios UNIDOS y listo :)
