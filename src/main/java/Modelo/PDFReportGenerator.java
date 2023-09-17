@@ -43,7 +43,7 @@ public class PDFReportGenerator {
             documento.setPageSize(A4);
 
             Iterator<TipoInstrumento> itr = lista.getLista().iterator();
-            Paragraph titulo = new Paragraph("Reporte de tipos de instrumento");
+            Paragraph titulo = new Paragraph("Reporte tipos de instrumento");
             titulo.setAlignment(Element.ALIGN_CENTER);
             titulo.setSpacingAfter(20f);
             documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
