@@ -9,6 +9,7 @@ import Vista.CalibracionesJPanel;
 import Vista.InstruJPanel;
 import Vista.TipInstruJPanel;
 import Vista.VenPri;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -145,6 +146,8 @@ public class Controladora implements ActionListener {
                         Integer.parseInt(PanInstru.getTxTolerancia().getText()),
                         this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()));
                 admiinstru.insertarInstru(auxInstru);
+                System.out.println(this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()).toString());
+                System.out.println("\n");
                 
             }
             return;
@@ -163,53 +166,88 @@ public class Controladora implements ActionListener {
 //--------------------------------------------------------------------------------
         if (e.getSource().equals( PanInstru.getbBuscar()) ){
 
-                  if (PanInstru.getTxDescriAbuscar().getText().equals (""))    {
-                         JOptionPane.showMessageDialog(null, "Debe poner una Descripccion a buscar", "Error", JOptionPane.ERROR_MESSAGE);
+                  if (PanInstru.getTxDescriAbuscar().getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Debe poner una Descripcion a buscar", "Error", JOptionPane.ERROR_MESSAGE);
                   }
-                  else   {
-                      String aux="";
-                      int auxSerieINDEX=-1;
-                      aux=admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-                      
-                      if (aux!=""){
-                          if (admiinstru.BuscarXserie(aux)==true){
-                            PanInstru.getTxSerie().setText(admiinstru.getInstruCONserie(aux).getSerie());
-                            PanInstru.getTxDescripcion().setText(admiinstru.getInstruCONserie(aux).getDescripcion());
-                            PanInstru.getTxMin().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMin()));
-                            PanInstru.getTxMax().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMax()));
-                            PanInstru.getTxTolerancia().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getTolerancia()));
-                            PanInstru.getTxCB_Tipo().setSelectedIndex(
-                            admiTIPOSinstru.getIndexDtipoInstruXcodigo(admiinstru.getInstruCONserie(aux).getTipDinstrumentos().getCodigo())
-                            );
-                            PanInstru.getbEditar().setEnabled(true);
-                          } 
-                     }
-                  }
-                  return;
-                  
+                  else {
+                    String aux = "";
+                    int auxSerieINDEX = -1;
+                    aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
+
+                    if (aux != "") {
+                        if (admiinstru.BuscarXserie(aux) == true) {
+                            
+                            int siOno;
+                            siOno = JOptionPane.showConfirmDialog(null, "EXITO SE ENCONTRO"
+                             + "\nLe gustaria editar dicho instrumento ? ", "|-Si=Yes-| |-No=No-|", JOptionPane.YES_NO_OPTION);
+                            
+                             if (siOno == JOptionPane.YES_OPTION) {
+                                 PanInstru.getTxDescriAbuscar().setEditable(false);
+                                 PanInstru.getTxSerie().setText(admiinstru.getInstruCONserie(aux).getSerie());
+                                 PanInstru.getTxDescripcion().setText(admiinstru.getInstruCONserie(aux).getDescripcion());
+                                 PanInstru.getTxMin().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMin()));
+                                 PanInstru.getTxMax().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMax()));
+                                 PanInstru.getTxTolerancia().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getTolerancia()));
+                                 PanInstru.getTxCB_Tipo().setSelectedIndex(
+                                 admiTIPOSinstru.getIndexDtipoInstruXcodigo(admiinstru.getInstruCONserie(aux).getTipDinstrumentos().getCodigo())
+                                );
+                                PanInstru.getbEditar().setEnabled(true);
+                            } else {
+                                 PanInstru.getTxSerie().setText("");
+                                 PanInstru.getTxTolerancia().setText("");
+                                 PanInstru.getTxMin().setText("");
+                                 PanInstru.getTxMax().setText("");
+                                 PanInstru.getTxDescripcion().setText("");
+                                 PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+                            }
+
+                        }
+                
+                    }
+                    else{
+                            JOptionPane.showMessageDialog(null, "No se encontro", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                    return;
+
+                }
         }
  //--------------------------------------------------------------------------------
        if (e.getSource().equals( PanInstru.getbEditar()) ){ 
-           String auxSerie;
-           auxSerie=admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-           int auxSerieINDEX=-1;
-           auxSerieINDEX=admiinstru.getIndexDEserie(PanInstru.getTxSerie().getText());
-                            admiinstru.update(auxSerieINDEX,
-                                    PanInstru.getTxSerie().getText(),
-                                    PanInstru.getTxDescripcion().getText(),
-                                    Integer.parseInt(PanInstru.getTxMin().getText()),
-                                    Integer.parseInt(PanInstru.getTxMax().getText()),
-                                    Integer.parseInt(PanInstru.getTxTolerancia().getText()),
-                                    admiinstru.getInstruCONserie(auxSerie).getTipDinstrumentos());
-            PanInstru.getTxSerie().setText("");
-           PanInstru.getTxTolerancia().setText("");
-           PanInstru.getTxMin().setText("");
-           PanInstru.getTxMax().setText("");
-           PanInstru.getTxDescripcion().setText("");
-           PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
-           PanInstru.getTxDescriAbuscar().setText("");
-           PanInstru.getbEditar().setEnabled(false);
+                            String auxSerie;
+                                auxSerie = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
+                                
+                                int auxSerieINDEX = -1;
+                                auxSerieINDEX = admiinstru.getIndexDEdescripcion(PanInstru.getTxDescriAbuscar().getText());
+                                admiinstru.update(auxSerieINDEX,
+                                        PanInstru.getTxSerie().getText(),
+                                        PanInstru.getTxDescripcion().getText(),
+                                        Integer.parseInt(PanInstru.getTxMin().getText()),
+                                        Integer.parseInt(PanInstru.getTxMax().getText()),
+                                        Integer.parseInt(PanInstru.getTxTolerancia().getText()),
+                                        admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()));
+                                PanInstru.getTxSerie().setText("");
+                                PanInstru.getTxTolerancia().setText("");
+                                PanInstru.getTxMin().setText("");
+                                PanInstru.getTxMax().setText("");
+                                PanInstru.getTxDescripcion().setText("");
+                                PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+                                PanInstru.getTxDescriAbuscar().setText("");
+                                PanInstru.getTxDescriAbuscar().setEditable(true);
+                                PanInstru.getbEditar().setEnabled(false);
+                                
        } 
+                          
+//--------------------------------------------------------------------------------
+       if(e.getSource().equals(PanInstru.getbBorrar())){
+           if(PanInstru.getTablaDInstrumentos().getSelectedRow()==-1){
+               JOptionPane.showMessageDialog(null, "Debe selecionar un Instrumento de la tabla para borrar", "Error", JOptionPane.ERROR_MESSAGE);
+           }
+           else{
+                admiinstru.getLista().getElemento(PanInstru.getTablaDInstrumentos().getSelectedRow());
+                admiinstru.borrarRegistro(PanInstru.getTablaDInstrumentos().getSelectedRow());
+           }
+       }
 //--------------------------------------------------------------------------------
     }
 
