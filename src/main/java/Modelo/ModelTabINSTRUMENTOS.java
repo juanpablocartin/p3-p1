@@ -63,10 +63,10 @@ public class ModelTabINSTRUMENTOS {
 
        //--------------------------------------------------------------------  
     //--------------------------------------------------------------------  
-    public int getIndexDEserie(String s){
+    public int getIndexDEdescripcion(String s){
         int j=-1;
         for (int i = 0; i < lis.getCantidad(); i++)      {
-               if(lis.getElemento(i).getSerie().equals(s)){ 
+               if(lis.getElemento(i).getDescripcion().equals(s)){ 
                    j=i;
                }
         }
