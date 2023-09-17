@@ -49,7 +49,7 @@ public class TipoInstrumento {
 
     @Override
     public String toString() {
-        return "TipoInstrumento{" + "codigo=" + codigo + ", nombre=" + nombre + ", unidad=" + unidad + '}';
+        return  "codigo: " + codigo + " nombre: " + nombre + " unidad: " + unidad ;
     }
     
     
