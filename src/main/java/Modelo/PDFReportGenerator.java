@@ -8,6 +8,7 @@ package Modelo;
  *
  * @author Carlos
  */
+import com.itextpdf.text.BaseColor;
 import java.io.FileOutputStream;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
@@ -53,12 +54,15 @@ public class PDFReportGenerator {
 
             PdfPCell cell = new PdfPCell(new Paragraph("Código"));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
             tabla.addCell(cell);
             cell = new PdfPCell(new Paragraph("Nombre"));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
             tabla.addCell(cell);
             cell = new PdfPCell(new Paragraph("Unidad"));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
             tabla.addCell(cell);
             TipoInstrumento t;
             while (itr.hasNext()) {
