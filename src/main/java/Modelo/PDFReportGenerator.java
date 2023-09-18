@@ -100,7 +100,7 @@ public class PDFReportGenerator {
             documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
          
 
-            PdfPTable tabla = new PdfPTable(3);
+            PdfPTable tabla = new PdfPTable(6);
             tabla.setWidthPercentage(100);
 
             PdfPCell cell = new PdfPCell(new Paragraph("Serie"));
