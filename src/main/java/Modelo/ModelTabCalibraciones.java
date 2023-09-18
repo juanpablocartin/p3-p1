@@ -19,6 +19,10 @@ public class ModelTabCalibraciones {
         lista = new ListaCalibraciones();
     }
 
+    public ModelTabCalibraciones(ListaCalibraciones lista) {
+        this.lista = lista;
+    }
+
     public ModelTabCalibraciones(DefaultTableModel modelo, ListaCalibraciones lista) {
         this.modelo = modelo;
         this.lista = lista;

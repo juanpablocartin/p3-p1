@@ -59,13 +59,15 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
         this.JLInstrumentoSeleccionado = JLInstrumentoSeleccionado;
     }
 
-    public JTable getJTableListado() {
-        return JTableListado;
+    public JTable getJTableCalibraciones() {
+        return JTableCalibraciones;
     }
 
-    public void setJTableListado(JTable JTableListado) {
-        this.JTableListado = JTableListado;
+    public void setJTableCalibraciones(JTable JTableCalibraciones) {
+        this.JTableCalibraciones = JTableCalibraciones;
     }
+
+
 
     public JTable getJTableMediciones() {
         return JTableMediciones;
@@ -143,7 +145,7 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        JTableListado = new javax.swing.JTable();
+        JTableCalibraciones = new javax.swing.JTable();
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 102, 102), 1, true));
         jPanel1.setForeground(new java.awt.Color(204, 204, 204));
@@ -250,6 +252,11 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        JTableMediciones.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentHidden(java.awt.event.ComponentEvent evt) {
+                JTableMedicionesComponentHidden(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTableMediciones);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -273,16 +280,41 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
         );
 
         JBguardar.setText("Guardar");
+        JBguardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBguardarActionPerformed(evt);
+            }
+        });
 
         JBlimpiar.setText("Limpiar");
+        JBlimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBlimpiarActionPerformed(evt);
+            }
+        });
 
         JBborrar.setText("Borrar");
+        JBborrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBborrarActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         JBbuscar.setText("BUSCAR");
+        JBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBbuscarActionPerformed(evt);
+            }
+        });
 
         JBReporte.setText("REPORTE");
+        JBReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBReporteActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Búsqueda ");
 
@@ -324,7 +356,7 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Listado");
 
-        JTableListado.setModel(new javax.swing.table.DefaultTableModel(
+        JTableCalibraciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -335,7 +367,7 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(JTableListado);
+        jScrollPane2.setViewportView(JTableCalibraciones);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -399,9 +431,9 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(JBguardar)
-                            .addComponent(JBlimpiar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JBlimpiar)
+                            .addComponent(JBguardar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(JBborrar)))
                 .addGap(18, 18, 18)
@@ -416,6 +448,30 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TFnumeroCalibracionActionPerformed
 
+    private void JBReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBReporteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBReporteActionPerformed
+
+    private void JTableMedicionesComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_JTableMedicionesComponentHidden
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTableMedicionesComponentHidden
+
+    private void JBguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBguardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBguardarActionPerformed
+
+    private void JBlimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBlimpiarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBlimpiarActionPerformed
+
+    private void JBborrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBborrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBborrarActionPerformed
+
+    private void JBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBbuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBbuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JBReporte;
@@ -424,7 +480,7 @@ public class CalibracionesJPanel extends javax.swing.JPanel {
     private javax.swing.JButton JBguardar;
     private javax.swing.JButton JBlimpiar;
     private javax.swing.JLabel JLInstrumentoSeleccionado;
-    private javax.swing.JTable JTableListado;
+    private javax.swing.JTable JTableCalibraciones;
     private javax.swing.JTable JTableMediciones;
     private javax.swing.JTextField TFbuscarPorNumero;
     private javax.swing.JTextField TFfechaCalibracion;

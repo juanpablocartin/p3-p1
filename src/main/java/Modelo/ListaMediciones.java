@@ -24,6 +24,25 @@ public class ListaMediciones {
         }
     }
 
+    public ListaMediciones() {
+    }
+
+    public int getTamano() {
+        return tamano;
+    }
+
+    public void setTamano(int tamano) {
+        this.tamano = tamano;
+    }
+
+    public ArrayList<Medicion> getMediciones() {
+        return mediciones;
+    }
+
+    public void setMediciones(ArrayList<Medicion> mediciones) {
+        this.mediciones = mediciones;
+    }
+
     public void numReferencia(int min, int max) {
         int rango = max - min;        
         int aumento = rango / tamano;

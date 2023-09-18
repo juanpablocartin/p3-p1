@@ -3,9 +3,13 @@ package Controladora;
 import Modelo.Calibracion;
 import Modelo.Fecha;
 import Modelo.Instrumento;
+import Modelo.ListaCalibraciones;
+import Modelo.ListaMediciones;
 import Modelo.ListaTipoInstrumento;
+import Modelo.ModelTabCalibraciones;
 import Modelo.ModelTabINSTRUMENTOS;
 import Modelo.ModelTabTipeInstrument;
+import Modelo.ModeloTabMediciones;
 import Modelo.PDFReportGenerator;
 import Modelo.TipoInstrumento;
 import Vista.CalibracionesJPanel;
@@ -37,12 +41,20 @@ public class Controladora implements ActionListener {
 
     private ModelTabINSTRUMENTOS admiinstru;
     private ModelTabTipeInstrument admiTIPOSinstru;
+    private ModelTabCalibraciones adminCalibraciones;
+    private ModeloTabMediciones adminMediciones;
     //------------------------------------------------
     private ListaTipoInstrumento listaTipos;
     private PDFReportGenerator pdf;
-    int contCalibraciones;
+
     //Lista global de tipos de instrumentos
     //-------------------------------------------------
+    
+    // Calibraciones y mediciones
+    ListaCalibraciones listCalib;
+    ListaMediciones listMed;
+    int contCalibraciones;
+
     public Controladora(VenPri v, TipInstruJPanel ti, InstruJPanel i, CalibracionesJPanel c) {
         this.VenPricipal = v;
         v.setVisible(true);
@@ -101,7 +113,6 @@ public class Controladora implements ActionListener {
         this.PanTIPOSInstru.getBotonBorrar().addActionListener(this);
         this.PanTIPOSInstru.getBotonBusqueda().addActionListener(this);
         this.PanTIPOSInstru.getBotonReporte().addActionListener(this);
-        
 
         // limpiar text fields calibraciones
         this.PanCali.getTFbuscarPorNumero().setText("");
@@ -117,6 +128,16 @@ public class Controladora implements ActionListener {
         this.PanCali.getJBlimpiar().addActionListener(this);
         contCalibraciones = 0;
 
+        
+        listCalib = new ListaCalibraciones();
+        listMed = new ListaMediciones();
+        adminCalibraciones = new ModelTabCalibraciones(listCalib);
+        this.PanCali.getJTableCalibraciones().setModel(adminCalibraciones.getModelo());
+        adminMediciones = new ModeloTabMediciones(listMed);
+        this.PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
+        
+        
+        
     }
 
     @Override
@@ -359,23 +380,37 @@ public class Controladora implements ActionListener {
 
         if (e.getSource().equals(this.PanCali.getJBguardar())) {
             if (!PanCali.getTFnumeroCalibracion().equals("") && !PanCali.getTFfechaCalibracion().equals("") && !PanCali.getTFmedicionesCalibracion().equals("")) {
-                
-                
-                
+                agregarCalibracion();
+                this.PanCali.getTFnumeroCalibracion().setText("");
+                this.PanCali.getTFmedicionesCalibracion().setText("");
+                this.PanCali.getTFfechaCalibracion().setText("");
+
             } else {
                 JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
             }
+        }
+        if (e.getSource().equals(this.PanCali.getJBlimpiar())) {
+            this.PanCali.getTFnumeroCalibracion().setText("");
+            this.PanCali.getTFmedicionesCalibracion().setText("");
+            this.PanCali.getTFfechaCalibracion().setText("");
+        }
+        if (e.getSource().equals(this.PanCali.getJBborrar())) {
+
+        }
+        if (e.getSource().equals(this.PanCali.getJBReporte())) {
+
+        }
+        if (e.getSource().equals(this.PanCali.getJBbuscar())) {
 
         }
     }
 
-    
-    
-    public void agregarCalibracion(){
-        Calibracion c ;
+    public void agregarCalibracion() {
+        Calibracion c;
         contCalibraciones++;
         Fecha f = new Fecha();
-        c = new Calibracion(String.valueOf(contCalibraciones),PanCali.getTFnumeroCalibracion().getText(), new Fecha(PanCali.getTFfechaCalibracion().getText()),Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
+        c = new Calibracion(String.valueOf(contCalibraciones), PanCali.getTFnumeroCalibracion().getText(), new Fecha(PanCali.getTFfechaCalibracion().getText()), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
+        this.adminCalibraciones.ingresar(c);
     }
 }
 //estando en la que quiero cambiar "PULL" de esa misma rama pero del git
