@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import java.awt.Image;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -20,6 +23,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     public TipInstruJPanel() {
         initComponents();
         this.botonBorrar.setEnabled(false);
+        this.imagenPdf();
     }
 
     public JTable getTablaListTipeInstrument() {
@@ -38,7 +42,6 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         botonGuardar = new javax.swing.JButton();
         BotonLimpiar = new javax.swing.JButton();
         botonBorrar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         nombreBusquedaTextFiled = new javax.swing.JTextField();
@@ -47,8 +50,6 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaListTipeInstrument = new javax.swing.JTable();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         codigoTextField = new javax.swing.JTextField();
@@ -73,9 +74,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setText("Tipo Instrumento ");
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Busqueda"));
 
         jLabel5.setText("Nombre");
 
@@ -85,7 +84,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
             }
         });
 
-        botonReporte.setText("Reporte");
+        botonReporte.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonReporteActionPerformed(evt);
@@ -108,8 +107,8 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(nombreBusquedaTextFiled, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 302, Short.MAX_VALUE)
-                .addComponent(botonReporte)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(botonReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(botonBusqueda)
                 .addGap(23, 23, 23))
@@ -127,7 +126,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Listado"));
 
         tablaListTipeInstrument.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,6 +139,11 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaListTipeInstrument.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaListTipeInstrumentMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaListTipeInstrument);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -159,11 +163,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jLabel6.setText("Búsqueda");
-
-        jLabel7.setText("Listado");
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tipo instrumento"));
 
         jLabel1.setText("Código");
 
@@ -228,11 +228,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -242,15 +238,14 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                                 .addGap(35, 35, 35)
                                 .addComponent(BotonLimpiar))
                             .addComponent(botonBorrar)))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -259,13 +254,9 @@ public class TipInstruJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addComponent(botonBorrar))
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel6)
-                .addGap(5, 5, 5)
+                .addGap(39, 39, 39)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(jLabel7)
-                .addGap(1, 1, 1)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -298,6 +289,10 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private void codigoTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_codigoTextFieldActionPerformed
+
+    private void tablaListTipeInstrumentMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaListTipeInstrumentMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tablaListTipeInstrumentMouseClicked
 
     public void setBotonLimpiar(JButton BotonLimpiar) {
         this.BotonLimpiar = BotonLimpiar;
@@ -375,7 +370,13 @@ public class TipInstruJPanel extends javax.swing.JPanel {
         return unidadTexttField;
     }
 
-    
+    private void imagenPdf(){
+        ImageIcon imagen=new ImageIcon("src/pdf.png");
+        Image img = imagen.getImage();
+        Image imgEscalada = img.getScaledInstance(40, 50, Image.SCALE_SMOOTH);
+        ImageIcon imagenEscalada=new ImageIcon(imgEscalada);
+        this.botonReporte.setIcon(imagenEscalada);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonLimpiar;
@@ -387,10 +388,7 @@ public class TipInstruJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
