@@ -1,6 +1,8 @@
 
 package Vista;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
@@ -12,6 +14,7 @@ public class InstruJPanel extends javax.swing.JPanel {
 
     public InstruJPanel() {
         initComponents();
+        this.imagenPdf();
     }
     
     public JButton getbBorrar() {
@@ -288,9 +291,9 @@ public class InstruJPanel extends javax.swing.JPanel {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txDescriAbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 394, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
                 .addComponent(bBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(26, 26, 26)
                 .addComponent(bReporte)
                 .addGap(24, 24, 24))
         );
@@ -424,7 +427,13 @@ public class InstruJPanel extends javax.swing.JPanel {
     private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bEditarActionPerformed
-
+private void imagenPdf(){
+        ImageIcon imagen=new ImageIcon("src/pdf.png");
+        Image img = imagen.getImage();
+        Image imgEscalada = img.getScaledInstance(20, 25, Image.SCALE_SMOOTH);
+        ImageIcon imagenEscalada=new ImageIcon(imgEscalada);
+        this.getbReporte().setIcon(imagenEscalada);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton bBorrar;
