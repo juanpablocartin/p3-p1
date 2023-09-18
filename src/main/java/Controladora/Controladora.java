@@ -43,6 +43,7 @@ public class Controladora implements ActionListener {
         this.PanInstru = i;
         PanInstru.getbEditar().setEnabled(false);
         
+        this.PanInstru = i;
         this.PanCali = c;
         VenPricipal.getTABpri().addTab("Tipos de Instrumentos", PanTIPOSInstru);
         VenPricipal.getTABpri().addTab("Instrumentos", PanInstru);
@@ -68,6 +69,9 @@ public class Controladora implements ActionListener {
         this.PanTIPOSInstru.getBotonGuardar().addActionListener(this);
         this.PanTIPOSInstru.getBotonLimpiar().addActionListener(this);
         ///////Todo lo que va a escuchar/////////////
+
+        this.PanTIPOSInstru.getBotonGuardar().addActionListener(this);
+        this.PanTIPOSInstru.getBotonLimpiar().addActionListener(this);
 
     }
 
@@ -149,6 +153,7 @@ public class Controladora implements ActionListener {
                 System.out.println(this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()).toString());
                 System.out.println("\n");
                 
+                System.out.println("GOOD");
             }
             return;
         }
@@ -256,3 +261,4 @@ public class Controladora implements ActionListener {
 //hola
 //hola
 //hola hola
+//holaaaaaa que dolor
