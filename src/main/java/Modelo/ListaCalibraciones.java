@@ -39,4 +39,11 @@ public class ListaCalibraciones {
     public void eliminarPorPos(int i){
         //hacer
     }
+//    public int buscar(String num){
+//        int pos=-1;
+//        for(int i=0; i<calibraciones.size(); i++){
+//            if(calibraciones.get(i).getNum().g)
+//        }
+//        return pos;
+//    }
 }
