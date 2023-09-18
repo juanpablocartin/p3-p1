@@ -336,6 +336,16 @@ public class Controladora implements ActionListener {
            }
        }
 //--------------------------------------------------------------------------------
+        if(e.getSource().equals(this.PanInstru.getbReporte())){
+            try {
+                this.pdf=new PDFReportGenerator(this.admiinstru.getLista());
+                JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado","Informe",JOptionPane.INFORMATION_MESSAGE);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+//--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
     }
 
 }

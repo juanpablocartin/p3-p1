@@ -27,12 +27,20 @@ public class PDFReportGenerator {
 
     private Document documento;
     private ListaTipoInstrumento lista;
+    private ListaINSTRUMENTOS listaInstru;
 
     public PDFReportGenerator(ListaTipoInstrumento l) throws FileNotFoundException {
 
         lista = l;
         documento = new Document();
         this.generaDocumento();
+
+    }
+    public PDFReportGenerator(ListaINSTRUMENTOS l) throws FileNotFoundException {
+
+        listaInstru = l;
+        documento = new Document();
+        this.generaDocumento2();
 
     }
 
@@ -70,6 +78,67 @@ public class PDFReportGenerator {
                 tabla.addCell(t.getCodigo());
                 tabla.addCell(t.getNombre());
                 tabla.addCell(t.getUnidad());
+            }
+               documento.add(titulo);
+            
+            documento.add(tabla);
+            documento.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private void generaDocumento2() {
+        try {
+            PdfWriter.getInstance(documento, new FileOutputStream("Informe.pdf"));
+            documento.open();
+            documento.setPageSize(A4);
+
+            Iterator<Instrumento> itr = listaInstru.getArrayList().iterator();
+            Paragraph titulo = new Paragraph("Reporte tipos de instrumento");
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            titulo.setSpacingAfter(20f);
+            documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
+         
+
+            PdfPTable tabla = new PdfPTable(3);
+            tabla.setWidthPercentage(100);
+
+            PdfPCell cell = new PdfPCell(new Paragraph("Serie"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla.addCell(cell);
+            cell = new PdfPCell(new Paragraph("Descripcion"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla.addCell(cell);
+            cell = new PdfPCell(new Paragraph("min"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla.addCell(cell);
+            cell = new PdfPCell(new Paragraph("max"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla.addCell(cell);
+            cell = new PdfPCell(new Paragraph("Tolerancia"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla.addCell(cell);
+            cell = new PdfPCell(new Paragraph("tipDinstrumentos"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla.addCell(cell);
+            ////---------------------------------------------------------------------------------
+            ////---------------------------------------------------------------------------------
+            Instrumento t;
+            
+            while (itr.hasNext()) {
+                t = itr.next();
+                tabla.addCell(t.getSerie());
+                tabla.addCell(t.getDescripcion());
+                tabla.addCell(Integer.toString(t.getMin()));
+                tabla.addCell(Integer.toString(t.getMax()));
+                tabla.addCell(Integer.toString(t.getTolerancia()));
+                tabla.addCell(t.getTipDinstrumentos().getCodigo());
             }
                documento.add(titulo);
             
