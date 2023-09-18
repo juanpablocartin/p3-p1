@@ -22,6 +22,7 @@ public class ModeloTabMediciones {
     public ModeloTabMediciones(ListaMediciones mediciones) {
         this.mediciones = mediciones;
         modelo = new DefaultTableModel();
+        formatoModelo();
     }
 
     public ModeloTabMediciones() {
@@ -42,6 +43,11 @@ public class ModeloTabMediciones {
 
     public void setMediciones(ListaMediciones mediciones) {
         this.mediciones = mediciones;
+    }
+
+    private void formatoModelo() {
+        String[] s = {"Medida", "Referencia", "Lectura"};
+        modelo.setColumnIdentifiers(s);
     }
     
 }

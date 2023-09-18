@@ -41,8 +41,7 @@ public class Controladora implements ActionListener {
 
     private ModelTabINSTRUMENTOS admiinstru;
     private ModelTabTipeInstrument admiTIPOSinstru;
-    private ModelTabCalibraciones adminCalibraciones;
-    private ModeloTabMediciones adminMediciones;
+
     //------------------------------------------------
     private ListaTipoInstrumento listaTipos;
     private PDFReportGenerator pdf;
@@ -50,11 +49,14 @@ public class Controladora implements ActionListener {
     //Lista global de tipos de instrumentos
     //-------------------------------------------------
     
-    // Calibraciones y mediciones
+    // -------------------------------- Calibraciones y mediciones ----------------------------------------
     ListaCalibraciones listCalib;
     ListaMediciones listMed;
     int contCalibraciones;
-
+    private ModelTabCalibraciones adminCalibraciones;
+    private ModeloTabMediciones adminMediciones;
+    Instrumento instrumentoSeleccionado;
+    
     public Controladora(VenPri v, TipInstruJPanel ti, InstruJPanel i, CalibracionesJPanel c) {
         this.VenPricipal = v;
         v.setVisible(true);
@@ -135,7 +137,7 @@ public class Controladora implements ActionListener {
         this.PanCali.getJTableCalibraciones().setModel(adminCalibraciones.getModelo());
         adminMediciones = new ModeloTabMediciones(listMed);
         this.PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
-        
+//        instrumentoSeleccionado = new Instrumento();
         
         
     }
@@ -381,6 +383,7 @@ public class Controladora implements ActionListener {
         if (e.getSource().equals(this.PanCali.getJBguardar())) {
             if (!PanCali.getTFnumeroCalibracion().equals("") && !PanCali.getTFfechaCalibracion().equals("") && !PanCali.getTFmedicionesCalibracion().equals("")) {
                 agregarCalibracion();
+                
                 this.PanCali.getTFnumeroCalibracion().setText("");
                 this.PanCali.getTFmedicionesCalibracion().setText("");
                 this.PanCali.getTFfechaCalibracion().setText("");
@@ -410,7 +413,11 @@ public class Controladora implements ActionListener {
         contCalibraciones++;
         Fecha f = new Fecha();
         c = new Calibracion(String.valueOf(contCalibraciones), PanCali.getTFnumeroCalibracion().getText(), new Fecha(PanCali.getTFfechaCalibracion().getText()), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
+        agregarMediciones(c.getCantMediciones());
         this.adminCalibraciones.ingresar(c);
+    }
+    public void agregarMediciones(int cant){
+        
     }
 }
 //estando en la que quiero cambiar "PULL" de esa misma rama pero del git
