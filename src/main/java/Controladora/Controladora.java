@@ -46,10 +46,10 @@ public class Controladora implements ActionListener {
         v.setVisible(true);
 
         this.PanTIPOSInstru = ti;
-        
+
         this.PanInstru = i;
         PanInstru.getbEditar().setEnabled(false);
-        
+
         this.PanCali = c;
         VenPricipal.getTABpri().addTab("Tipos de Instrumentos", PanTIPOSInstru);
         VenPricipal.getTABpri().addTab("Instrumentos", PanInstru);
@@ -82,7 +82,7 @@ public class Controladora implements ActionListener {
         i.getTablaDInstrumentos().setModel(admiinstru.getModelito());
         //En el evento de ADD Tipo de Instrumento se tiene que agregar la siguiente liniea de codigo
         admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
-        
+
         ///////Todo lo que va a escuchar/////////////
         this.PanInstru.getbGuardar().addActionListener(this);
         this.PanInstru.getbLimpiar().addActionListener(this);
@@ -90,11 +90,10 @@ public class Controladora implements ActionListener {
         this.PanInstru.getbBuscar().addActionListener(this);
         this.PanInstru.getbReporte().addActionListener(this);
         this.PanInstru.getbEditar().addActionListener(this);
-        
+
         this.PanTIPOSInstru.getBotonGuardar().addActionListener(this);
         this.PanTIPOSInstru.getBotonLimpiar().addActionListener(this);
         ///////Todo lo que va a escuchar/////////////
-
 
         this.PanTIPOSInstru.getBotonGuardar().addActionListener(this);
         this.PanTIPOSInstru.getBotonLimpiar().addActionListener(this);
@@ -118,13 +117,13 @@ public class Controladora implements ActionListener {
                     t.setNombre(this.PanTIPOSInstru.getNombreTextField().getText());
                     t.setUnidad(this.PanTIPOSInstru.getUnidadTexttField().getText());
                     this.admiTIPOSinstru.insertarTipoInstrumento(t);
-                    JOptionPane.showMessageDialog(this.VenPricipal, t.getNombre() + " ingresado al sistemas", "Gardar", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this.VenPricipal, t.getNombre() + " ingresado al sistemas", "Grdar", JOptionPane.INFORMATION_MESSAGE);
 
-                admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
-                this.PanTIPOSInstru.getCodigoTextField().setText("");
-                this.PanTIPOSInstru.getNombreTextField().setText("");
-                this.PanTIPOSInstru.getUnidadTexttField().setText("");
-                admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
+                    admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
+                    this.PanTIPOSInstru.getCodigoTextField().setText("");
+                    this.PanTIPOSInstru.getNombreTextField().setText("");
+                    this.PanTIPOSInstru.getUnidadTexttField().setText("");
+                    admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
                     this.PanTIPOSInstru.getCodigoTextField().setText("");
                     this.PanTIPOSInstru.getNombreTextField().setText("");
                     this.PanTIPOSInstru.getUnidadTexttField().setText("");
@@ -198,7 +197,6 @@ public class Controladora implements ActionListener {
                     this.PanTIPOSInstru.getUnidadTexttField().setText(t.getUnidad());
                     this.PanTIPOSInstru.getBotonBorrar().setEnabled(true);
                     this.PanTIPOSInstru.getNombreBusquedaTextFiled().setText("");
-                    
 
                 } else {
                     JOptionPane.showMessageDialog(this.VenPricipal, "Tipo de instrumento no resgistrado", "Error", JOptionPane.ERROR_MESSAGE);
@@ -206,14 +204,14 @@ public class Controladora implements ActionListener {
 
             }
         }
-        if(e.getSource().equals(this.PanTIPOSInstru.getBotonReporte())){
+        if (e.getSource().equals(this.PanTIPOSInstru.getBotonReporte())) {
             try {
-                this.pdf=new PDFReportGenerator(this.admiTIPOSinstru.getLista());
-                JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado","Informe",JOptionPane.INFORMATION_MESSAGE);
+                this.pdf = new PDFReportGenerator(this.admiTIPOSinstru.getLista());
+                JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado", "Informe", JOptionPane.INFORMATION_MESSAGE);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
         //------------------------------------------------------Fin panel Tipo de Instrumento--------------------------------------------------------------------------------------------
         //-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -224,7 +222,7 @@ public class Controladora implements ActionListener {
             if (PanInstru.getTxSerie().getText().equals("") || PanInstru.getTxTolerancia().getText().equals("") || PanInstru.getTxMin().getText().equals("") || PanInstru.getTxMax().getText().equals("") || PanInstru.getTxDescripcion().getText().equals("") || PanInstru.getTxCB_Tipo().getSelectedIndex() == -1) {
                 JOptionPane.showMessageDialog(null, "Debes completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                Instrumento auxInstru=new Instrumento(
+                Instrumento auxInstru = new Instrumento(
                         PanInstru.getTxSerie().getText(),
                         PanInstru.getTxDescripcion().getText(),
                         Integer.parseInt(PanInstru.getTxMin().getText()),
@@ -234,112 +232,108 @@ public class Controladora implements ActionListener {
                 admiinstru.insertarInstru(auxInstru);
                 System.out.println(this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()).toString());
                 System.out.println("\n");
-                
-                
+
             }
             return;
         }
 //--------------------------------------------------------------------------------
-        if (e.getSource().equals(PanInstru.getbLimpiar())){
+        if (e.getSource().equals(PanInstru.getbLimpiar())) {
             PanInstru.getTxSerie().setText("");
             PanInstru.getTxTolerancia().setText("");
             PanInstru.getTxMin().setText("");
             PanInstru.getTxMax().setText("");
             PanInstru.getTxDescripcion().setText("");
             PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
-                  
-                  return;
-        } 
-//--------------------------------------------------------------------------------
-        if (e.getSource().equals( PanInstru.getbBuscar()) ){
 
-                  if (PanInstru.getTxDescriAbuscar().getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "Debe poner una Descripcion a buscar", "Error", JOptionPane.ERROR_MESSAGE);
-                  }
-                  else {
-                    String aux = "";
-                    int auxSerieINDEX = -1;
-                    aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-
-                    if (aux != "") {
-                        if (admiinstru.BuscarXserie(aux) == true) {
-                            
-                            int siOno;
-                            siOno = JOptionPane.showConfirmDialog(null, "EXITO SE ENCONTRO"
-                             + "\nLe gustaria editar dicho instrumento ? ", "|-Si=Yes-| |-No=No-|", JOptionPane.YES_NO_OPTION);
-                            
-                             if (siOno == JOptionPane.YES_OPTION) {
-                                 PanInstru.getTxDescriAbuscar().setEditable(false);
-                                 PanInstru.getTxSerie().setText(admiinstru.getInstruCONserie(aux).getSerie());
-                                 PanInstru.getTxDescripcion().setText(admiinstru.getInstruCONserie(aux).getDescripcion());
-                                 PanInstru.getTxMin().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMin()));
-                                 PanInstru.getTxMax().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMax()));
-                                 PanInstru.getTxTolerancia().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getTolerancia()));
-                                 PanInstru.getTxCB_Tipo().setSelectedIndex(
-                                 admiTIPOSinstru.getIndexDtipoInstruXcodigo(admiinstru.getInstruCONserie(aux).getTipDinstrumentos().getCodigo())
-                                );
-                                PanInstru.getbEditar().setEnabled(true);
-                            } else {
-                                 PanInstru.getTxSerie().setText("");
-                                 PanInstru.getTxTolerancia().setText("");
-                                 PanInstru.getTxMin().setText("");
-                                 PanInstru.getTxMax().setText("");
-                                 PanInstru.getTxDescripcion().setText("");
-                                 PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
-                            }
-
-                        }
-                
-                    }
-                    else{
-                            JOptionPane.showMessageDialog(null, "No se encontro", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                    
-                    return;
-
-                }
+            return;
         }
- //--------------------------------------------------------------------------------
-       if (e.getSource().equals( PanInstru.getbEditar()) ){ 
-                            String auxSerie;
-                                auxSerie = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-                                
-                                int auxSerieINDEX = -1;
-                                auxSerieINDEX = admiinstru.getIndexDEdescripcion(PanInstru.getTxDescriAbuscar().getText());
-                                admiinstru.update(auxSerieINDEX,
-                                        PanInstru.getTxSerie().getText(),
-                                        PanInstru.getTxDescripcion().getText(),
-                                        Integer.parseInt(PanInstru.getTxMin().getText()),
-                                        Integer.parseInt(PanInstru.getTxMax().getText()),
-                                        Integer.parseInt(PanInstru.getTxTolerancia().getText()),
-                                        admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()));
-                                PanInstru.getTxSerie().setText("");
-                                PanInstru.getTxTolerancia().setText("");
-                                PanInstru.getTxMin().setText("");
-                                PanInstru.getTxMax().setText("");
-                                PanInstru.getTxDescripcion().setText("");
-                                PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
-                                PanInstru.getTxDescriAbuscar().setText("");
-                                PanInstru.getTxDescriAbuscar().setEditable(true);
-                                PanInstru.getbEditar().setEnabled(false);
-                                
-       } 
-                          
 //--------------------------------------------------------------------------------
-       if(e.getSource().equals(PanInstru.getbBorrar())){
-           if(PanInstru.getTablaDInstrumentos().getSelectedRow()==-1){
-               JOptionPane.showMessageDialog(null, "Debe selecionar un Instrumento de la tabla para borrar", "Error", JOptionPane.ERROR_MESSAGE);
-           }
-           else{
+        if (e.getSource().equals(PanInstru.getbBuscar())) {
+
+            if (PanInstru.getTxDescriAbuscar().getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Debe poner una Descripcion a buscar", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String aux = "";
+                int auxSerieINDEX = -1;
+                aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
+
+                if (aux != "") {
+                    if (admiinstru.BuscarXserie(aux) == true) {
+
+                        int siOno;
+                        siOno = JOptionPane.showConfirmDialog(null, "EXITO SE ENCONTRO"
+                                + "\nLe gustaria editar dicho instrumento ? ", "|-Si=Yes-| |-No=No-|", JOptionPane.YES_NO_OPTION);
+
+                        if (siOno == JOptionPane.YES_OPTION) {
+                            PanInstru.getTxDescriAbuscar().setEditable(false);
+                            PanInstru.getTxSerie().setText(admiinstru.getInstruCONserie(aux).getSerie());
+                            PanInstru.getTxDescripcion().setText(admiinstru.getInstruCONserie(aux).getDescripcion());
+                            PanInstru.getTxMin().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMin()));
+                            PanInstru.getTxMax().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMax()));
+                            PanInstru.getTxTolerancia().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getTolerancia()));
+                            PanInstru.getTxCB_Tipo().setSelectedIndex(
+                                    admiTIPOSinstru.getIndexDtipoInstruXcodigo(admiinstru.getInstruCONserie(aux).getTipDinstrumentos().getCodigo())
+                            );
+                            PanInstru.getbEditar().setEnabled(true);
+                        } else {
+                            PanInstru.getTxSerie().setText("");
+                            PanInstru.getTxTolerancia().setText("");
+                            PanInstru.getTxMin().setText("");
+                            PanInstru.getTxMax().setText("");
+                            PanInstru.getTxDescripcion().setText("");
+                            PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+                        }
+
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontro", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
+                return;
+
+            }
+        }
+        //--------------------------------------------------------------------------------
+        if (e.getSource().equals(PanInstru.getbEditar())) {
+            String auxSerie;
+            auxSerie = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
+
+            int auxSerieINDEX = -1;
+            auxSerieINDEX = admiinstru.getIndexDEdescripcion(PanInstru.getTxDescriAbuscar().getText());
+            admiinstru.update(auxSerieINDEX,
+                    PanInstru.getTxSerie().getText(),
+                    PanInstru.getTxDescripcion().getText(),
+                    Integer.parseInt(PanInstru.getTxMin().getText()),
+                    Integer.parseInt(PanInstru.getTxMax().getText()),
+                    Integer.parseInt(PanInstru.getTxTolerancia().getText()),
+                    admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()));
+            PanInstru.getTxSerie().setText("");
+            PanInstru.getTxTolerancia().setText("");
+            PanInstru.getTxMin().setText("");
+            PanInstru.getTxMax().setText("");
+            PanInstru.getTxDescripcion().setText("");
+            PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+            PanInstru.getTxDescriAbuscar().setText("");
+            PanInstru.getTxDescriAbuscar().setEditable(true);
+            PanInstru.getbEditar().setEnabled(false);
+
+        }
+
+//--------------------------------------------------------------------------------
+        if (e.getSource().equals(PanInstru.getbBorrar())) {
+            if (PanInstru.getTablaDInstrumentos().getSelectedRow() == -1) {
+                JOptionPane.showMessageDialog(null, "Debe selecionar un Instrumento de la tabla para borrar", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
                 admiinstru.getLista().getElemento(PanInstru.getTablaDInstrumentos().getSelectedRow());
                 admiinstru.borrarRegistro(PanInstru.getTablaDInstrumentos().getSelectedRow());
-           }
-       }
+            }
+        }
 //--------------------------------------------------------------------------------
-        if(e.getSource().equals(this.PanInstru.getbReporte())){
+        if (e.getSource().equals(this.PanInstru.getbReporte())) {
             try {
-                this.pdf=new PDFReportGenerator(this.admiinstru.getLista());
-                JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado","Informe",JOptionPane.INFORMATION_MESSAGE);
+                this.pdf = new PDFReportGenerator(this.admiinstru.getLista());
+                JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado", "Informe", JOptionPane.INFORMATION_MESSAGE);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
             }

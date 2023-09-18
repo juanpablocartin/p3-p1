@@ -46,7 +46,7 @@ public class PDFReportGenerator {
 
     private void generaDocumento() {
         try {
-            PdfWriter.getInstance(documento, new FileOutputStream("Informe.pdf"));
+            PdfWriter.getInstance(documento, new FileOutputStream("InformeTipos.pdf"));
             documento.open();
             documento.setPageSize(A4);
 
@@ -89,7 +89,7 @@ public class PDFReportGenerator {
     }
     private void generaDocumento2() {
         try {
-            PdfWriter.getInstance(documento, new FileOutputStream("Informe.pdf"));
+            PdfWriter.getInstance(documento, new FileOutputStream("InformeInstrumentos.pdf"));
             documento.open();
             documento.setPageSize(A4);
 
