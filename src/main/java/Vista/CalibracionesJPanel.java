@@ -1,9 +1,110 @@
 package Vista;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+
 public class CalibracionesJPanel extends javax.swing.JPanel {
 
     public CalibracionesJPanel() {
         initComponents();
+    }
+
+    public JButton getJBReporte() {
+        return JBReporte;
+    }
+
+    public void setJBReporte(JButton JBReporte) {
+        this.JBReporte = JBReporte;
+    }
+
+    public JButton getJBborrar() {
+        return JBborrar;
+    }
+
+    public void setJBborrar(JButton JBborrar) {
+        this.JBborrar = JBborrar;
+    }
+
+    public JButton getJBbuscar() {
+        return JBbuscar;
+    }
+
+    public void setJBbuscar(JButton JBbuscar) {
+        this.JBbuscar = JBbuscar;
+    }
+
+    public JButton getJBguardar() {
+        return JBguardar;
+    }
+
+    public void setJBguardar(JButton JBguardar) {
+        this.JBguardar = JBguardar;
+    }
+
+    public JButton getJBlimpiar() {
+        return JBlimpiar;
+    }
+
+    public void setJBlimpiar(JButton JBlimpiar) {
+        this.JBlimpiar = JBlimpiar;
+    }
+
+    public JLabel getJLInstrumentoSeleccionado() {
+        return JLInstrumentoSeleccionado;
+    }
+
+    public void setJLInstrumentoSeleccionado(JLabel JLInstrumentoSeleccionado) {
+        this.JLInstrumentoSeleccionado = JLInstrumentoSeleccionado;
+    }
+
+    public JTable getJTableListado() {
+        return JTableListado;
+    }
+
+    public void setJTableListado(JTable JTableListado) {
+        this.JTableListado = JTableListado;
+    }
+
+    public JTable getJTableMediciones() {
+        return JTableMediciones;
+    }
+
+    public void setJTableMediciones(JTable JTableMediciones) {
+        this.JTableMediciones = JTableMediciones;
+    }
+
+    public JTextField getTFbuscarPorNumero() {
+        return TFbuscarPorNumero;
+    }
+
+    public void setTFbuscarPorNumero(JTextField TFbuscarPorNumero) {
+        this.TFbuscarPorNumero = TFbuscarPorNumero;
+    }
+
+    public JTextField getTFfechaCalibracion() {
+        return TFfechaCalibracion;
+    }
+
+    public void setTFfechaCalibracion(JTextField TFfechaCalibracion) {
+        this.TFfechaCalibracion = TFfechaCalibracion;
+    }
+
+    public JTextField getTFmedicionesCalibracion() {
+        return TFmedicionesCalibracion;
+    }
+
+    public void setTFmedicionesCalibracion(JTextField TFmedicionesCalibracion) {
+        this.TFmedicionesCalibracion = TFmedicionesCalibracion;
+    }
+
+    public JTextField getTFnumeroCalibracion() {
+        return TFnumeroCalibracion;
+    }
+
+    public void setTFnumeroCalibracion(JTextField TFnumeroCalibracion) {
+        this.TFnumeroCalibracion = TFnumeroCalibracion;
     }
 
     /**

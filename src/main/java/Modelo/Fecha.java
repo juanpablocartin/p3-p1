@@ -12,13 +12,17 @@ public class Fecha {
     private int dia;
     private int mes;
     private int anio;
-
+    private String s;
     public Fecha(int dia, int mes, int anio) {
         this.dia = dia;
         this.mes = mes;
         this.anio = anio;
     }
 
+    public Fecha(String s) {
+        this.s = s;
+    }
+    
     public Fecha() {
         this.dia=0;
         this.mes=0;
