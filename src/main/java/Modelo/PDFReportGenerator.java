@@ -168,62 +168,66 @@ public class PDFReportGenerator {
 
             Iterator<Calibracion> it = listaCalib.getCalibraciones().iterator();
             Iterator<Medicion> it2 = listaMed.getMediciones().iterator();
-            
+
             Paragraph titulo = new Paragraph("Reporte calibraciones");
             titulo.setAlignment(Element.ALIGN_CENTER);
             titulo.setSpacingAfter(20f);
             documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
-            PdfPTable tabla = new PdfPTable(6);
+            PdfPTable tabla = new PdfPTable(3);
             tabla.setWidthPercentage(100);
             PdfPCell cell = new PdfPCell(new Paragraph("Numero"));
 
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             tabla.addCell(cell);
-            
+
             cell = new PdfPCell(new Paragraph("Fecha"));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
             tabla.addCell(cell);
-            
+
             cell = new PdfPCell(new Paragraph("Mediciones"));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
-            
+
+            PdfPTable tabla2 = new PdfPTable(3);
+                     
             PdfPCell cell2 = new PdfPCell(new Paragraph("# Medicion"));
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell.addElement(cell2);
+            tabla2.addCell(cell2);
 
             cell2 = new PdfPCell(new Paragraph("Referencia"));
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell.addElement(cell2);
-            
+            tabla2.addCell(cell2);
+
             cell2 = new PdfPCell(new Paragraph("Lectura"));
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            cell.addElement(cell2);
-            
+            tabla2.addCell(cell2);
+
+            cell.addElement(tabla2);
+
             Calibracion c = listaCalib.get(0);
             Medicion m = c.getMediciones().get(0);
-            
-            while(it.hasNext()){
+
+            while (it.hasNext()) {
                 tabla.addCell(c.getNum());
                 tabla.addCell(c.getFechaCalibracion());
-                while(it2.hasNext()){
-                    tabla.addCell(String.valueOf(m.getNumero()));
-                    tabla.addCell(String.valueOf(m.getReferencia()));
-                    tabla.addCell(String.valueOf(m.getLectura()));                    
+                while (it2.hasNext()) {
+                    tabla2.addCell(String.valueOf(m.getNumero()));
+                    tabla2.addCell(String.valueOf(m.getReferencia()));
+                    tabla2.addCell(String.valueOf(m.getLectura()));
+                    tabla.addCell(tabla2);
                     m = it2.next();
-                }              
+                }
                 c = it.next();
                 m = c.getMediciones().get(0);
             }
             documento.add(titulo);
             documento.add(tabla);
             documento.close();
-            
 
         } catch (Exception e) {
             e.printStackTrace();

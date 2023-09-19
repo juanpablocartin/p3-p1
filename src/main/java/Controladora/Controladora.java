@@ -128,6 +128,7 @@ public class Controladora implements ActionListener {
         this.PanCali.getJBborrar().addActionListener(this);
         this.PanCali.getJBbuscar().addActionListener(this);
         this.PanCali.getJBlimpiar().addActionListener(this);
+        this.PanCali.getJBReporte().addActionListener(this);
         contCalibraciones = 0;
 
         listCalib = new ListaCalibraciones();
@@ -404,7 +405,7 @@ public class Controladora implements ActionListener {
                     this.PanCali.getTFfechaCalibracion().setText("");
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(this.VenPricipal, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
             }
@@ -436,8 +437,9 @@ public class Controladora implements ActionListener {
         }
         if (e.getSource().equals(this.PanCali.getJBReporte())) {
             try {
-                this.pdf = new PDFReportGenerator(adminCalibraciones.getList());
+                System.out.println("hhhhh");
                 JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado", "Informe", JOptionPane.INFORMATION_MESSAGE);
+                this.pdf = new PDFReportGenerator(adminCalibraciones.getList());
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
