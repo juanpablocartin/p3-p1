@@ -437,7 +437,6 @@ public class Controladora implements ActionListener {
         }
         if (e.getSource().equals(this.PanCali.getJBReporte())) {
             try {
-                System.out.println("hhhhh");
                 JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado", "Informe", JOptionPane.INFORMATION_MESSAGE);
                 this.pdf = new PDFReportGenerator(adminCalibraciones.getList());
 
@@ -467,14 +466,8 @@ public class Controladora implements ActionListener {
         contCalibraciones++;
         String s = String.valueOf(contCalibraciones);
         c = new Calibracion(s, "", PanCali.getTFfechaCalibracion().getText(), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
-        agregarMediciones(c.getCantMediciones());
+        c.setMediciones(new ListaMediciones(c.getCantMediciones()));
         this.adminCalibraciones.ingresar(c);
-    }
-
-    public void agregarMediciones(int cant) {
-//        for(int i=0; i<cant; i++){
-//            this.adminMedicione
-//        }
     }
 }
 //estando en la que quiero cambiar "PULL" de esa misma rama pero del git

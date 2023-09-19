@@ -167,7 +167,7 @@ public class PDFReportGenerator {
             documento.setPageSize(A4);
 
             Iterator<Calibracion> it = listaCalib.getCalibraciones().iterator();
-            Iterator<Medicion> it2 = listaMed.getMediciones().iterator();
+            Iterator<Medicion> it2;
 
             Paragraph titulo = new Paragraph("Reporte calibraciones");
             titulo.setAlignment(Element.ALIGN_CENTER);
@@ -191,7 +191,7 @@ public class PDFReportGenerator {
             cell.setBackgroundColor(BaseColor.GRAY);
 
             PdfPTable tabla2 = new PdfPTable(3);
-                     
+
             PdfPCell cell2 = new PdfPCell(new Paragraph("# Medicion"));
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -209,22 +209,26 @@ public class PDFReportGenerator {
 
             cell.addElement(tabla2);
 
-            Calibracion c = listaCalib.get(0);
-            Medicion m = c.getMediciones().get(0);
-
-            while (it.hasNext()) {
-                tabla.addCell(c.getNum());
-                tabla.addCell(c.getFechaCalibracion());
-                while (it2.hasNext()) {
-                    tabla2.addCell(String.valueOf(m.getNumero()));
-                    tabla2.addCell(String.valueOf(m.getReferencia()));
-                    tabla2.addCell(String.valueOf(m.getLectura()));
-                    tabla.addCell(tabla2);
-                    m = it2.next();
+            if (!listaCalib.getCalibraciones().isEmpty()) {
+                Calibracion c = listaCalib.get(0);
+                Medicion m;
+                while (it.hasNext()) {
+                    tabla.addCell(c.getNum());
+                    tabla.addCell(c.getFechaCalibracion());
+                    
+                    m = c.getMediciones().get(0);
+                    it2 = c.getMediciones().getMediciones().iterator();
+                    while (it2.hasNext()) {
+                        tabla2.addCell(String.valueOf(m.getNumero()));
+                        tabla2.addCell(String.valueOf(m.getReferencia()));
+                        tabla2.addCell(String.valueOf(m.getLectura()));
+                        tabla.addCell(tabla2);
+                        m = it2.next();
+                    }
+                    c = it.next();
                 }
-                c = it.next();
-                m = c.getMediciones().get(0);
             }
+
             documento.add(titulo);
             documento.add(tabla);
             documento.close();
