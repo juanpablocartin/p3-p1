@@ -1,11 +1,12 @@
 package Controladora;
 
 import Modelo.Calibracion;
-import Modelo.Fecha;
+//import Modelo.Fecha;
 import Modelo.Instrumento;
 import Modelo.ListaCalibraciones;
 import Modelo.ListaMediciones;
 import Modelo.ListaTipoInstrumento;
+import Modelo.Medicion;
 import Modelo.ModelTabCalibraciones;
 import Modelo.ModelTabINSTRUMENTOS;
 import Modelo.ModelTabTipeInstrument;
@@ -136,6 +137,23 @@ public class Controladora implements ActionListener {
         adminMediciones = new ModeloTabMediciones(listMed);
         this.PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
 //        instrumentoSeleccionado = new Instrumento();
+//        adminMediciones.getModelo().
+        this.PanCali.getJTableMediciones().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    int filaSeleccionada = PanCali.getJTableMediciones().getSelectedRow();
+                    int colSeleccionada = PanCali.getJTableMediciones().getSelectedColumn();
+                    if (filaSeleccionada != -1) {
+                        if (adminMediciones.celdaEditable(colSeleccionada)) {
+                            String s = adminMediciones.getModelo().getValueAt(filaSeleccionada, 2).toString();
+                            adminMediciones.editarMedicion(filaSeleccionada, Integer.parseInt(s));
+                        }
+                    }
+                }
+            }
+
+        });
 
     }
 
@@ -398,8 +416,8 @@ public class Controladora implements ActionListener {
             this.PanCali.getTFfechaCalibracion().setText("");
             PanCali.getJBborrar().setEnabled(false);
             this.PanCali.getTFbuscarPorNumero().setText("");
-
         }
+
         if (e.getSource().equals(this.PanCali.getJBborrar())) {
             if (PanCali.getTFbuscarPorNumero().getText().compareTo("") != 0) {
                 String s = this.PanCali.getTFbuscarPorNumero().getText();
@@ -417,7 +435,13 @@ public class Controladora implements ActionListener {
 
         }
         if (e.getSource().equals(this.PanCali.getJBReporte())) {
+            try {
+                this.pdf = new PDFReportGenerator(adminCalibraciones.getList());
+                JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado", "Informe", JOptionPane.INFORMATION_MESSAGE);
 
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
 
         if (e.getSource().equals(this.PanCali.getJBbuscar())) {
@@ -427,7 +451,7 @@ public class Controladora implements ActionListener {
                 this.PanCali.getJTableCalibraciones().setRowSelectionInterval(pos, pos);
                 PanCali.getJBborrar().setEnabled(true);
                 PanCali.getTFnumeroCalibracion().setText(s);
-                PanCali.getTFfechaCalibracion().setText(this.adminCalibraciones.getElementoPorPos(pos).getFecha().getS());
+                PanCali.getTFfechaCalibracion().setText(this.adminCalibraciones.getElementoPorPos(pos).getFechaCalibracion());
                 String cantM = String.valueOf(this.adminCalibraciones.getElementoPorPos(pos).getCantMediciones());
                 PanCali.getTFmedicionesCalibracion().setText(cantM);
             } else {
@@ -440,7 +464,7 @@ public class Controladora implements ActionListener {
         Calibracion c;
         contCalibraciones++;
         String s = String.valueOf(contCalibraciones);
-        c = new Calibracion(s, "", new Fecha(PanCali.getTFfechaCalibracion().getText()), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
+        c = new Calibracion(s, "", PanCali.getTFfechaCalibracion().getText(), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
         agregarMediciones(c.getCantMediciones());
         this.adminCalibraciones.ingresar(c);
     }

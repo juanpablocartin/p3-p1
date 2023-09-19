@@ -58,15 +58,7 @@ public class ModelTabCalibraciones {
 
     public void ingresar(Calibracion c) {
         lista.ingresar(c);
-        modelo.addRow(new Object[]{"# "+c.getNum(), c.getFecha().getS(), c.getCantMediciones()});
-    }
-
-    public void eliminarPorNumero(String s) {
-
-    }
-
-    public void eliminarPorPosicion(int i) {
-
+        modelo.addRow(new Object[]{"# "+c.getNum(), c.getFechaCalibracion(), c.getCantMediciones()});
     }
 
     public int getPos(String s) {
@@ -102,7 +94,7 @@ public class ModelTabCalibraciones {
     public void actualizarTabla() {
         modelo.setRowCount(0);
         for (int i = 0; i < lista.tamano(); i++) {
-            modelo.addRow(new Object[]{lista.get(i).getNum(), lista.get(i).getFecha().getS(), lista.get(i).getCantMediciones()});
+            modelo.addRow(new Object[]{lista.get(i).getNum(), lista.get(i).getFechaCalibracion(), lista.get(i).getCantMediciones()});
         }
     }
 }
