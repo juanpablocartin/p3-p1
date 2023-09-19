@@ -58,7 +58,7 @@ public class ModelTabCalibraciones {
 
     public void ingresar(Calibracion c) {
         lista.ingresar(c);
-        modelo.addColumn(new Object[]{c.getNum(), c.getFecha().toString(), c.getCantMediciones()});
+        modelo.addRow(new Object[]{"# "+c.getNum(), c.getFecha().getS(), c.getCantMediciones()});
     }
 
     public void eliminarPorNumero(String s) {
@@ -87,19 +87,22 @@ public class ModelTabCalibraciones {
 
     public Calibracion getElementoPorPos(int i) {
 
-        return null;
+        return lista.get(i);
 
     }
 
     public void editarCalibracion() {
 
     }
-
+    public void eliminarPorPos(int i){
+        lista.getCalibraciones().remove(i);
+        actualizarTabla();
+    }
+    
     public void actualizarTabla() {
         modelo.setRowCount(0);
         for (int i = 0; i < lista.tamano(); i++) {
-            modelo.addRow(new Object[]{lista.get(i).getCantMediciones()});
+            modelo.addRow(new Object[]{lista.get(i).getNum(), lista.get(i).getFecha().getS(), lista.get(i).getCantMediciones()});
         }
-        // terminar de agregar todos los datos de calibraciones que van en la tabla
     }
 }

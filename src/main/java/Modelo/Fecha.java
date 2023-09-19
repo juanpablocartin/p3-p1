@@ -29,6 +29,14 @@ public class Fecha {
         this.anio = 0;
     }
 
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
+
     public int getDia() {
         return dia;
     }
@@ -55,7 +63,7 @@ public class Fecha {
     
     public String toString(){
         StringBuilder s = new StringBuilder();
-        s.append(dia+"/"+mes+"/"+anio);
+        s.append(s.toString());
         return s.toString();
         
     }

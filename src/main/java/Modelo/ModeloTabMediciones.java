@@ -27,7 +27,9 @@ public class ModeloTabMediciones {
 
     public ModeloTabMediciones() {
     }
-    
+    public void ingresarMedicion(){
+        
+    }
 
     public DefaultTableModel getModelo() {
         return modelo;
