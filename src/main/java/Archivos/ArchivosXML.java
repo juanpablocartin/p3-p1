@@ -4,6 +4,8 @@
  */
 package Archivos;
 
+import Modelo.Instrumento;
+import Modelo.ListaINSTRUMENTOS;
 import Modelo.ListaTipoInstrumento;
 import Modelo.ModelTabTipeInstrument;
 import Modelo.TipoInstrumento;
@@ -100,4 +102,5 @@ public class ArchivosXML {
         }
 
     }
+    
 }
