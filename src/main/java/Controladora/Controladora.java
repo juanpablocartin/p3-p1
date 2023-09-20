@@ -25,13 +25,9 @@ import javax.swing.event.ListSelectionListener;
 public class Controladora implements ActionListener {
 
     private VenPri VenPricipal;
-    public boolean BOOLvp = false;
     private TipInstruJPanel PanTIPOSInstru;
-    public boolean BOOLti = false;
     private InstruJPanel PanInstru;
-    public boolean BOOLi = false;
     private CalibracionesJPanel PanCali;
-    public boolean BOOLcali = false;
 
     private ModelTabINSTRUMENTOS admiinstru;
     private ModelTabTipeInstrument admiTIPOSinstru;
@@ -39,6 +35,7 @@ public class Controladora implements ActionListener {
     private ListaTipoInstrumento listaTipos;
     private PDFReportGenerator pdf;
 
+    private Instrumento MANIinstrumrnto=null;
     //Lista global de tipos de instrumentos
     //-------------------------------------------------
     public Controladora(VenPri v, TipInstruJPanel ti, InstruJPanel i, CalibracionesJPanel c) {
@@ -49,7 +46,8 @@ public class Controladora implements ActionListener {
         
         this.PanInstru = i;
         PanInstru.getbEditar().setEnabled(false);
-        
+                PanInstru.getbEditarCali().setEnabled(false);
+
         this.PanCali = c;
         VenPricipal.getTABpri().addTab("Tipos de Instrumentos", PanTIPOSInstru);
         VenPricipal.getTABpri().addTab("Instrumentos", PanInstru);
@@ -90,6 +88,8 @@ public class Controladora implements ActionListener {
         this.PanInstru.getbBuscar().addActionListener(this);
         this.PanInstru.getbReporte().addActionListener(this);
         this.PanInstru.getbEditar().addActionListener(this);
+        this.PanInstru.getbEditarCali().addActionListener(this);
+        //this.VenPricipal.getTABpri().(this);
         
         this.PanTIPOSInstru.getBotonGuardar().addActionListener(this);
         this.PanTIPOSInstru.getBotonLimpiar().addActionListener(this);
@@ -279,6 +279,7 @@ public class Controladora implements ActionListener {
                                  admiTIPOSinstru.getIndexDtipoInstruXcodigo(admiinstru.getInstruCONserie(aux).getTipDinstrumentos().getCodigo())
                                 );
                                 PanInstru.getbEditar().setEnabled(true);
+                                PanInstru.getbEditarCali().setEnabled(true);
                             } else {
                                  PanInstru.getTxSerie().setText("");
                                  PanInstru.getTxTolerancia().setText("");
@@ -345,6 +346,12 @@ public class Controladora implements ActionListener {
             }
         }
 //--------------------------------------------------------------------------------
+        if (e.getSource().equals(this.PanInstru.getbEditarCali())) {
+                    VenPricipal.getTABpri().setSelectedIndex(2);
+                    String aux = "";
+                    aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
+                    MANIinstrumrnto=admiinstru.getInstruCONserie(aux);
+        }
 //--------------------------------------------------------------------------------
     }
 
