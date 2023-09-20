@@ -26,6 +26,12 @@ public class Medicion {
         lectura = 0;
     }
 
+    public Medicion(int numero) {
+        this.numero = numero;
+        numero = 0;
+        referencia = 0;
+    }
+
     public int getNumero() {
         return numero;
     }

@@ -20,7 +20,7 @@ public class ListaMediciones {
         mediciones = new ArrayList();
 
         for (int i = 0; i < tamano; i++) {
-            mediciones.add(new Medicion());
+            mediciones.add(new Medicion(i + 1));
         }
     }
 
@@ -34,9 +34,11 @@ public class ListaMediciones {
     public void setTamano(int tamano) {
         this.tamano = tamano;
     }
-    public Medicion get(int i){
+
+    public Medicion get(int i) {
         return mediciones.get(i);
     }
+
     public ArrayList<Medicion> getMediciones() {
         return mediciones;
     }
@@ -46,12 +48,15 @@ public class ListaMediciones {
     }
 
     public void numReferencia(int min, int max) {
-        int rango = max - min;        
+        int rango = max - min;
         int aumento = rango / tamano;
-        int numRef=min;
-        for(int i=0; i<tamano; i++){
-            mediciones.get(i).setReferencia(numRef);
+        int numRef = min;
+
+        mediciones.get(0).setReferencia(min);
+        mediciones.get(tamano - 1).setReferencia(max);
+        for (int i = 1; i < tamano - 1; i++) {
             numRef += aumento;
+            mediciones.get(i).setReferencia(numRef);
         }
     }
 

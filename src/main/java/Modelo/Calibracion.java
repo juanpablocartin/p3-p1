@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author luare
  */
 public class Calibracion {
-    
+
     private String num;
     private String numSerieInstrumento;
     private String fechaCalibracion;
@@ -19,8 +19,9 @@ public class Calibracion {
     private ListaMediciones mediciones;
 
     public Calibracion() {
-        
+
     }
+
     public Calibracion(String num, String numSerieInstrumento, String fechaCalibracion, int cantMediciones) {
         this.num = num;
         this.numSerieInstrumento = numSerieInstrumento;
@@ -60,8 +61,6 @@ public class Calibracion {
         this.numSerieInstrumento = numSerieInstrumento;
     }
 
-
-
     public int getCantMediciones() {
         return cantMediciones;
     }
@@ -70,13 +69,14 @@ public class Calibracion {
         this.cantMediciones = cantMediciones;
     }
 
-    
-    void setNumReferenciaMediciones(int min, int max){
-       mediciones.numReferencia(min, max);
-        
+    void setNumReferenciaMediciones(int min, int max) {
+        mediciones.numReferencia(min, max);
+
     }
 
-    
-    
-    
+    public void numReferenciaMed(int min, int max) {
+        mediciones.numReferencia(min, max);
+
+    }
+
 }

@@ -128,12 +128,13 @@ public class Controladora implements ActionListener {
         this.PanCali.getJBborrar().setEnabled(false);
         this.PanCali.getTFnumeroCalibracion().setEnabled(false);
 
-        // set listeners de botons calibraciones
+        // set listeners de botones calibraciones
         this.PanCali.getJBguardar().addActionListener(this);
         this.PanCali.getJBborrar().addActionListener(this);
         this.PanCali.getJBbuscar().addActionListener(this);
         this.PanCali.getJBlimpiar().addActionListener(this);
         this.PanCali.getJBReporte().addActionListener(this);
+
         contCalibraciones = 0;
 
         listCalib = new ListaCalibraciones();
@@ -160,6 +161,7 @@ public class Controladora implements ActionListener {
             }
 
         });
+      
 
         //Archivos---------------------------------------------------------------
         archivos = new ArchivosXML();
@@ -167,7 +169,8 @@ public class Controladora implements ActionListener {
         admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
         //------------------------------------------------------------------------
 
-    }
+        }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -322,7 +325,9 @@ public class Controladora implements ActionListener {
                 String aux = "";
                 int auxSerieINDEX = -1;
                 aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-
+                //Demaciado Importante ///////////////////////////////////////!!!!!!!!!!!!!!!!!!!!
+                MANIinstrumrnto = admiinstru.getInstruCONserie(aux);
+                //Demaciado Importante ///////////////////////////////////////!!!!!!!!!!!!!!!!!!!!
                 if (aux != "") {
                     if (admiinstru.BuscarXserie(aux) == true) {
 
@@ -352,7 +357,11 @@ public class Controladora implements ActionListener {
                         }
 
                     }
-
+                            StringBuilder s = new StringBuilder();
+                            s.append(this.MANIinstrumrnto.getSerie() + " - " + this.MANIinstrumrnto.getDescripcion() + "(" + this.MANIinstrumrnto.getMin() + " - " + this.MANIinstrumrnto.getMax() + " Grados celcius)");
+                            PanCali.getJLInstrumentoSeleccionado().setText(s.toString());
+                            this.adminCalibraciones.setList(MANIinstrumrnto.getCalibraciones());
+                            this.adminCalibraciones.actualizarTabla();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontro", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -363,53 +372,7 @@ public class Controladora implements ActionListener {
         }
 
 //--------------------------------------------------------------------------------
-        if (e.getSource().equals(PanInstru.getbBuscar())) {
-
-            if (PanInstru.getTxDescriAbuscar().getText().equals("")) {
-                JOptionPane.showMessageDialog(null, "Debe poner una Descripcion a buscar", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                String aux = "";
-                int auxSerieINDEX = -1;
-                aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-
-                if (aux != "") {
-                    if (admiinstru.BuscarXserie(aux) == true) {
-
-                        int siOno;
-                        siOno = JOptionPane.showConfirmDialog(null, "EXITO SE ENCONTRO"
-                                + "\nLe gustaria editar dicho instrumento ? ", "|-Si=Yes-| |-No=No-|", JOptionPane.YES_NO_OPTION);
-
-                        if (siOno == JOptionPane.YES_OPTION) {
-                            PanInstru.getTxDescriAbuscar().setEditable(false);
-                            PanInstru.getTxSerie().setText(admiinstru.getInstruCONserie(aux).getSerie());
-                            PanInstru.getTxDescripcion().setText(admiinstru.getInstruCONserie(aux).getDescripcion());
-                            PanInstru.getTxMin().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMin()));
-                            PanInstru.getTxMax().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMax()));
-                            PanInstru.getTxTolerancia().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getTolerancia()));
-                            PanInstru.getTxCB_Tipo().setSelectedIndex(
-                                    admiTIPOSinstru.getIndexDtipoInstruXcodigo(admiinstru.getInstruCONserie(aux).getTipDinstrumentos().getCodigo())
-                            );
-                            PanInstru.getbEditar().setEnabled(true);
-                        } else {
-                            PanInstru.getTxSerie().setText("");
-                            PanInstru.getTxTolerancia().setText("");
-                            PanInstru.getTxMin().setText("");
-                            PanInstru.getTxMax().setText("");
-                            PanInstru.getTxDescripcion().setText("");
-                            PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
-                        }
-
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se encontro", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-
-                return;
-
-            }
-        }
-        //--------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------
         if (e.getSource().equals(PanInstru.getbEditar())) {
             String auxSerie;
             auxSerie = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
@@ -458,7 +421,14 @@ public class Controladora implements ActionListener {
             VenPricipal.getTABpri().setSelectedIndex(2);
             String aux = "";
             aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-            MANIinstrumrnto = admiinstru.getInstruCONserie(aux);
+           
+            StringBuilder s = new StringBuilder();
+            s.append(this.MANIinstrumrnto.getSerie() + " - " + this.MANIinstrumrnto.getDescripcion() + "(" + this.MANIinstrumrnto.getMin() + " - " + this.MANIinstrumrnto.getMax() + " Grados celcius)");
+            PanCali.getJLInstrumentoSeleccionado().setText(s.toString());
+            this.adminCalibraciones.setList(MANIinstrumrnto.getCalibraciones());
+            this.adminCalibraciones.actualizarTabla();
+
+
         }
 //--------------------------------------------------------------------------------
 
@@ -469,11 +439,14 @@ public class Controladora implements ActionListener {
                     this.PanCali.getTFnumeroCalibracion().setText("");
                     this.PanCali.getTFmedicionesCalibracion().setText("");
                     this.PanCali.getTFfechaCalibracion().setText("");
-
                 } else {
                     JOptionPane.showMessageDialog(this.VenPricipal, "Debe completar todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
+                String s = this.PanCali.getTFbuscarPorNumero().getText();
+                int pos = adminCalibraciones.getList().buscarPorNum(s);
+                actualizarMediciones(pos);
+
             }
 
         }
@@ -483,6 +456,11 @@ public class Controladora implements ActionListener {
             this.PanCali.getTFfechaCalibracion().setText("");
             PanCali.getJBborrar().setEnabled(false);
             this.PanCali.getTFbuscarPorNumero().setText("");
+            this.adminMediciones.setMediciones(new ListaMediciones());
+            adminMediciones.actualizarTabla();
+            PanCali.getJTableCalibraciones().clearSelection();
+            PanCali.getJTableMediciones().removeEditor();
+
         }
 
         if (e.getSource().equals(this.PanCali.getJBborrar())) {
@@ -498,6 +476,10 @@ public class Controladora implements ActionListener {
                 this.PanCali.getTFmedicionesCalibracion().setText("");
                 this.PanCali.getTFfechaCalibracion().setText("");
                 PanCali.getJBborrar().setEnabled(false);
+                this.adminCalibraciones.setList(new ListaCalibraciones());
+                adminCalibraciones.actualizarTabla();
+                this.adminMediciones.setMediciones(new ListaMediciones());
+                adminMediciones.actualizarTabla();
             }
 
         }
@@ -521,6 +503,10 @@ public class Controladora implements ActionListener {
                 PanCali.getTFfechaCalibracion().setText(this.adminCalibraciones.getElementoPorPos(pos).getFechaCalibracion());
                 String cantM = String.valueOf(this.adminCalibraciones.getElementoPorPos(pos).getCantMediciones());
                 PanCali.getTFmedicionesCalibracion().setText(cantM);
+                adminMediciones.setMediciones(adminCalibraciones.getElementoPorPos(pos).getMediciones());
+                adminMediciones.actualizarTabla();
+                PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
+
             } else {
                 JOptionPane.showMessageDialog(null, "No hay coincidencias", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
@@ -528,13 +514,46 @@ public class Controladora implements ActionListener {
 
     }
 
+            public void actualizarMediciones(int pos) {
+                for (int i = 0; i < adminCalibraciones.getList().get(pos).getMediciones().getTamano(); i++) {
+                    String s = adminMediciones.getModelo().getValueAt(i, 2).toString();
+                    adminMediciones.editarMedicion(i, Integer.parseInt(s));
+                }
+            }
+  
+
     public void agregarCalibracion() {
         Calibracion c;
         contCalibraciones++;
         String s = String.valueOf(contCalibraciones);
         c = new Calibracion(s, "", PanCali.getTFfechaCalibracion().getText(), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
         c.setMediciones(new ListaMediciones(c.getCantMediciones()));
+        c.numReferenciaMed(this.MANIinstrumrnto.getMin(), this.MANIinstrumrnto.getMax());
         this.adminCalibraciones.ingresar(c);
+    }
+
+    public void datosQuemados() {
+        Calibracion c1 = new Calibracion("111", "111", "111", 2);
+        c1.getMediciones().get(0).setLectura(1);
+        c1.getMediciones().get(0).setNumero(1);
+        c1.getMediciones().get(0).setReferencia(1);
+
+        c1.getMediciones().get(1).setLectura(2);
+        c1.getMediciones().get(1).setNumero(2);
+        c1.getMediciones().get(1).setReferencia(2);
+
+        Calibracion c2 = new Calibracion("222", "222", "222", 2);
+        c2.getMediciones().get(0).setLectura(3);
+        c2.getMediciones().get(0).setNumero(3);
+        c2.getMediciones().get(0).setReferencia(3);
+
+        c2.getMediciones().get(1).setLectura(4);
+        c2.getMediciones().get(1).setNumero(5);
+        c2.getMediciones().get(1).setReferencia(4);
+
+        adminCalibraciones.ingresar(c1);
+        adminCalibraciones.ingresar(c2);        
+
     }
 
 }
