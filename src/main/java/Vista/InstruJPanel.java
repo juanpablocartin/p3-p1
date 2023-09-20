@@ -191,6 +191,11 @@ public class InstruJPanel extends javax.swing.JPanel {
         });
 
         bEditarCali.setText("Edit Calibraciones");
+        bEditarCali.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditarCaliActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -440,6 +445,10 @@ public class InstruJPanel extends javax.swing.JPanel {
     private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bEditarActionPerformed
+
+    private void bEditarCaliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarCaliActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_bEditarCaliActionPerformed
 private void imagenPdf(){
         ImageIcon imagen=new ImageIcon("src/pdf.png");
         Image img = imagen.getImage();
