@@ -13,4 +13,50 @@ import javax.swing.table.DefaultTableModel;
 public class ModeloTabMediciones {
     private DefaultTableModel modelo;
     private ListaMediciones mediciones;
+
+    public ModeloTabMediciones(DefaultTableModel modelo, ListaMediciones mediciones) {
+        this.modelo = modelo;
+        this.mediciones = mediciones;
+    }
+
+    public ModeloTabMediciones(ListaMediciones mediciones) {
+        this.mediciones = mediciones;
+        modelo = new DefaultTableModel();
+        formatoModelo();
+    }
+
+    public ModeloTabMediciones() {
+    }
+    public void ingresarMedicion(){
+        
+    }
+
+    public DefaultTableModel getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(DefaultTableModel modelo) {
+        this.modelo = modelo;
+    }
+
+    public ListaMediciones getMediciones() {
+        return mediciones;
+    }
+    public Medicion getElemento(int i){
+        return mediciones.get(i);
+    }
+    public void setMediciones(ListaMediciones mediciones) {
+        this.mediciones = mediciones;
+    }
+    public void editarMedicion(int pos, int numRef){
+        this.mediciones.get(pos).setReferencia(numRef);
+    }
+    private void formatoModelo() {
+        String[] s = {"Medida", "Referencia", "Lectura"};
+        modelo.setColumnIdentifiers(s);
+    }
+    public boolean celdaEditable(int col){
+        return col==2;
+    }
+    
 }
