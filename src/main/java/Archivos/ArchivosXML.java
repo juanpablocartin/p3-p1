@@ -79,14 +79,14 @@ public class ArchivosXML {
             Document document = builder.build(xml);
             Element root = document.getRootElement();//Se obtiene la raiz
             List<Element> list = root.getChildren();//toma todos los hijos 
-//            System.out.println(list.size());
+
             for (int i = 0; i < list.size(); i++) {
                 Element tipo = list.get(i);
 
                 String codigo = tipo.getChildTextTrim("codigo");
                 String nombre = tipo.getChildTextTrim("nombre");
                 String unidad = tipo.getChildTextTrim("unidad");
-//                    System.out.println("{"+codigo+","+nombre+","+unidad+"}");
+
 
                 TipoInstrumento t = new TipoInstrumento(codigo, nombre, unidad);
                 modelo.insertarTipoInstrumento(t);
