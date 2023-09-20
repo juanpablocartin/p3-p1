@@ -22,12 +22,16 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 
 import com.itextpdf.text.Element;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PDFReportGenerator {
 
     private Document documento;
     private ListaTipoInstrumento lista;
     private ListaINSTRUMENTOS listaInstru;
+    private ListaCalibraciones listaCalib;
+    private ListaMediciones listaMed;
 
     public PDFReportGenerator(ListaTipoInstrumento l) throws FileNotFoundException {
 
@@ -36,11 +40,19 @@ public class PDFReportGenerator {
         this.generaDocumento();
 
     }
+
     public PDFReportGenerator(ListaINSTRUMENTOS l) throws FileNotFoundException {
 
         listaInstru = l;
         documento = new Document();
         this.generaDocumento2();
+
+    }
+
+    public PDFReportGenerator(ListaCalibraciones listaCalib) throws FileNotFoundException {
+        this.listaCalib = listaCalib;
+        documento = new Document();
+        this.generaDocumento3();
 
     }
 
@@ -55,7 +67,6 @@ public class PDFReportGenerator {
             titulo.setAlignment(Element.ALIGN_CENTER);
             titulo.setSpacingAfter(20f);
             documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
-         
 
             PdfPTable tabla = new PdfPTable(3);
             tabla.setWidthPercentage(100);
@@ -79,14 +90,15 @@ public class PDFReportGenerator {
                 tabla.addCell(t.getNombre());
                 tabla.addCell(t.getUnidad());
             }
-               documento.add(titulo);
-            
+            documento.add(titulo);
+
             documento.add(tabla);
             documento.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     private void generaDocumento2() {
         try {
             PdfWriter.getInstance(documento, new FileOutputStream("Informe.pdf"));
@@ -98,7 +110,6 @@ public class PDFReportGenerator {
             titulo.setAlignment(Element.ALIGN_CENTER);
             titulo.setSpacingAfter(20f);
             documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
-         
 
             PdfPTable tabla = new PdfPTable(6);
             tabla.setWidthPercentage(100);
@@ -130,7 +141,7 @@ public class PDFReportGenerator {
             ////---------------------------------------------------------------------------------
             ////---------------------------------------------------------------------------------
             Instrumento t;
-            
+
             while (itr.hasNext()) {
                 t = itr.next();
                 tabla.addCell(t.getSerie());
@@ -140,13 +151,92 @@ public class PDFReportGenerator {
                 tabla.addCell(Integer.toString(t.getTolerancia()));
                 tabla.addCell(t.getTipDinstrumentos().getCodigo());
             }
-               documento.add(titulo);
-            
+            documento.add(titulo);
+
             documento.add(tabla);
             documento.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void generaDocumento3() {
+        try {
+            PdfWriter.getInstance(documento, new FileOutputStream("Informe.pdf"));
+            documento.open();
+            documento.setPageSize(A4);
+
+            Iterator<Calibracion> it = listaCalib.getCalibraciones().iterator();
+            Iterator<Medicion> it2;
+
+            Paragraph titulo = new Paragraph("Reporte calibraciones");
+            titulo.setAlignment(Element.ALIGN_CENTER);
+            titulo.setSpacingAfter(20f);
+            documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
+            PdfPTable tabla = new PdfPTable(3);
+            tabla.setWidthPercentage(100);
+            PdfPCell cell = new PdfPCell(new Paragraph("Numero"));
+
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tabla.addCell(cell);
+
+            cell = new PdfPCell(new Paragraph("Fecha"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+            tabla.addCell(cell);
+
+            cell = new PdfPCell(new Paragraph("Mediciones"));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.GRAY);
+
+            PdfPTable tabla2 = new PdfPTable(3);
+
+            PdfPCell cell2 = new PdfPCell(new Paragraph("# Medicion"));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla2.addCell(cell2);
+
+            cell2 = new PdfPCell(new Paragraph("Referencia"));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla2.addCell(cell2);
+
+            cell2 = new PdfPCell(new Paragraph("Lectura"));
+            cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            tabla2.addCell(cell2);
+
+            cell.addElement(tabla2);
+
+            if (!listaCalib.getCalibraciones().isEmpty()) {
+                Calibracion c = listaCalib.get(0);
+                Medicion m;
+                while (it.hasNext()) {
+                    tabla.addCell(c.getNum());
+                    tabla.addCell(c.getFechaCalibracion());
+                    
+                    m = c.getMediciones().get(0);
+                    it2 = c.getMediciones().getMediciones().iterator();
+                    while (it2.hasNext()) {
+                        tabla2.addCell(String.valueOf(m.getNumero()));
+                        tabla2.addCell(String.valueOf(m.getReferencia()));
+                        tabla2.addCell(String.valueOf(m.getLectura()));
+                        tabla.addCell(tabla2);
+                        m = it2.next();
+                    }
+                    c = it.next();
+                }
+            }
+
+            documento.add(titulo);
+            documento.add(tabla);
+            documento.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public Document getDocumento() {

@@ -104,6 +104,10 @@ public class InstruJPanel extends javax.swing.JPanel {
     public void setbEditar(JButton bEditar) {
         this.bEditar = bEditar;
     }
+
+    public JButton getbEditarCali() {
+        return bEditarCali;
+    }
     
     
     
@@ -126,6 +130,7 @@ public class InstruJPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         bEditar = new javax.swing.JButton();
+        bEditarCali = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         bBuscar = new javax.swing.JButton();
@@ -185,6 +190,8 @@ public class InstruJPanel extends javax.swing.JPanel {
             }
         });
 
+        bEditarCali.setText("Edit Calibraciones");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -218,11 +225,15 @@ public class InstruJPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txMax, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(34, Short.MAX_VALUE))
+                        .addContainerGap(38, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txCB_Tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bEditar))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(bEditar, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(bEditarCali)
+                                .addContainerGap())))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txCB_Tipo, txMax, txMin, txSerie, txTolerancia});
@@ -253,6 +264,8 @@ public class InstruJPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bEditarCali)
+                        .addGap(18, 18, 18)
                         .addComponent(bEditar))))
         );
 
@@ -370,7 +383,7 @@ public class InstruJPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(bLimpiar))
                             .addComponent(bBorrar))))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel1, jLabel2});
@@ -439,6 +452,7 @@ private void imagenPdf(){
     public javax.swing.JButton bBorrar;
     public javax.swing.JButton bBuscar;
     public javax.swing.JButton bEditar;
+    public javax.swing.JButton bEditarCali;
     public javax.swing.JButton bGuardar;
     public javax.swing.JButton bLimpiar;
     public javax.swing.JButton bReporte;
