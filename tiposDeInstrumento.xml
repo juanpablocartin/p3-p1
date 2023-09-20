@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tiposDeInstrumento>
+  <tipoDeInstrumento>
+    <codigo>TER</codigo>
+    <nombre>Termometro</nombre>
+    <unidad>Grados</unidad>
+  </tipoDeInstrumento>
+  <tipoDeInstrumento>
+    <codigo>BAR</codigo>
+    <nombre>Barometro</nombre>
+    <unidad>Grados</unidad>
+  </tipoDeInstrumento>
+</tiposDeInstrumento>
