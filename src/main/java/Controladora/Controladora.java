@@ -549,14 +549,14 @@ public class Controladora implements ActionListener {
         c1.getMediciones().get(1).setNumero(2);
         c1.getMediciones().get(1).setReferencia(2);
 
-        Calibracion c2 = new Calibracion("111", "111", "111", 2);
-        c2.getMediciones().get(0).setLectura(1);
-        c2.getMediciones().get(0).setNumero(1);
-        c2.getMediciones().get(0).setReferencia(1);
+        Calibracion c2 = new Calibracion("222", "222", "222", 2);
+        c2.getMediciones().get(0).setLectura(3);
+        c2.getMediciones().get(0).setNumero(3);
+        c2.getMediciones().get(0).setReferencia(3);
 
-        c2.getMediciones().get(1).setLectura(2);
-        c2.getMediciones().get(1).setNumero(2);
-        c2.getMediciones().get(1).setReferencia(2);
+        c2.getMediciones().get(1).setLectura(4);
+        c2.getMediciones().get(1).setNumero(5);
+        c2.getMediciones().get(1).setReferencia(4);
 
         adminCalibraciones.ingresar(c1);
         adminCalibraciones.ingresar(c2);        
