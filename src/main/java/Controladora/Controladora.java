@@ -124,13 +124,13 @@ public class Controladora implements ActionListener {
         this.PanCali.getJBborrar().setEnabled(false);
         this.PanCali.getTFnumeroCalibracion().setEnabled(false);
 
-        // set listeners de botons calibraciones
+        // set listeners de botones calibraciones
         this.PanCali.getJBguardar().addActionListener(this);
         this.PanCali.getJBborrar().addActionListener(this);
         this.PanCali.getJBbuscar().addActionListener(this);
         this.PanCali.getJBlimpiar().addActionListener(this);
         this.PanCali.getJBReporte().addActionListener(this);
-//        this.PanCali.get
+
         contCalibraciones = 0;
 
         listCalib = new ListaCalibraciones();
@@ -139,24 +139,6 @@ public class Controladora implements ActionListener {
         this.PanCali.getJTableCalibraciones().setModel(adminCalibraciones.getModelo());
         adminMediciones = new ModeloTabMediciones(listMed);
         this.PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
-//        instrumentoSeleccionado = new Instrumento();
-//        adminMediciones.getModelo().
-//        this.PanCali.getJTableMediciones().getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-//            @Override
-//            public void valueChanged(ListSelectionEvent e) {
-//                if (!e.getValueIsAdjusting()) {
-//                    int filaSeleccionada = PanCali.getJTableMediciones().getSelectedRow();
-//                    int colSeleccionada = PanCali.getJTableMediciones().getSelectedColumn();
-//                    if (filaSeleccionada != -1) {
-//                        if (adminMediciones.celdaEditable(colSeleccionada)) {
-//                            String s = adminMediciones.getModelo().getValueAt(filaSeleccionada, 2).toString();
-//                            adminMediciones.editarMedicion(filaSeleccionada, Integer.parseInt(s));
-//                        }
-//                    }
-//                }
-//            }
-//
-//        });
 
     }
 
@@ -470,6 +452,7 @@ public class Controladora implements ActionListener {
                 String s = this.PanCali.getTFbuscarPorNumero().getText();
                 int pos = adminCalibraciones.getList().buscarPorNum(s);
                 actualizarMediciones(pos);
+
             }
 
         }
@@ -481,8 +464,8 @@ public class Controladora implements ActionListener {
             this.PanCali.getTFbuscarPorNumero().setText("");
             this.adminMediciones.setMediciones(new ListaMediciones());
             adminMediciones.actualizarTabla();
-//            this.adminMediciones.getModelo().setRowCount(0);
-            this.PanCali.getJTableCalibraciones().clearSelection();
+            PanCali.getJTableCalibraciones().clearSelection();
+            PanCali.getJTableMediciones().removeEditor();
 
         }
 
@@ -538,15 +521,9 @@ public class Controladora implements ActionListener {
     }
 
     public void actualizarMediciones(int pos) {
-        int filaSeleccionada = PanCali.getJTableMediciones().getSelectedRow();
-        int colSeleccionada = PanCali.getJTableMediciones().getSelectedColumn();
-//        adminMediciones.setMediciones(adminCalibraciones.getList().get(pos).getMediciones());
-//        adminMediciones.actualizarTabla();
-        if (filaSeleccionada > -1) {
-            if (adminMediciones.celdaEditable(colSeleccionada)) {
-                String s = adminMediciones.getModelo().getValueAt(filaSeleccionada, 2).toString();
-                adminMediciones.editarMedicion(filaSeleccionada, Integer.parseInt(s));
-            }
+        for (int i = 0; i < adminCalibraciones.getList().get(pos).getMediciones().getTamano(); i++) {
+            String s = adminMediciones.getModelo().getValueAt(i, 2).toString();
+            adminMediciones.editarMedicion(i, Integer.parseInt(s));
         }
 
     }

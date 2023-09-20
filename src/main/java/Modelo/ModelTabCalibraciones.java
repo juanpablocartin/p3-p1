@@ -61,31 +61,13 @@ public class ModelTabCalibraciones {
         modelo.addRow(new Object[]{"# "+c.getNum(), c.getFechaCalibracion(), c.getCantMediciones()});
     }
 
-//    public int getPos(String s) {
-//
-//        
-//
-//    }
-
     public boolean existe(String s) {
         return false;
     }
-
-    public Calibracion getElementoPorNumero(String s) {
-
-        return null;
-
-    }
-
     public Calibracion getElementoPorPos(int i) {
-
         return lista.get(i);
 
     }
-
-//    public void editarCalibracion() {
-//
-//    }
     public void eliminarPorPos(int i){
         lista.getCalibraciones().remove(i);
         actualizarTabla();
