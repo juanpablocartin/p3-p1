@@ -24,12 +24,12 @@ public class ModeloTabMediciones {
         modelo = new DefaultTableModel();
         formatoModelo();
     }
-
-    public ModeloTabMediciones() {
-    }
-    public void ingresarMedicion(){
-        
-    }
+//
+//    public ModeloTabMediciones() {
+//    }
+//    public void ingresarMedicion(){
+//        
+//    }
 
     public DefaultTableModel getModelo() {
         return modelo;
@@ -48,8 +48,8 @@ public class ModeloTabMediciones {
     public void setMediciones(ListaMediciones mediciones) {
         this.mediciones = mediciones;
     }
-    public void editarMedicion(int pos, int numRef){
-        this.mediciones.get(pos).setReferencia(numRef);
+    public void editarMedicion(int pos, int numLect){
+        this.mediciones.get(pos).setLectura(numLect);
     }
     private void formatoModelo() {
         String[] s = {"Medida", "Referencia", "Lectura"};
@@ -59,4 +59,10 @@ public class ModeloTabMediciones {
         return col==2;
     }
     
+    public void actualizarTabla(){
+        modelo.setRowCount(0);
+        for(int i=0; i<mediciones.getTamano(); i++){
+            modelo.addRow(new Object[]{mediciones.get(i).getNumero(),mediciones.get(i).getReferencia(), mediciones.get(i).getLectura()});
+        }
+    }
 }

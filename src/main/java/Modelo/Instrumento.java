@@ -8,6 +8,7 @@ public class Instrumento {
     private int min;
     private int max;
     private TipoInstrumento tipDinstrumentos;
+    private ListaCalibraciones calibraciones;
 
     public Instrumento(String Serie, String Descripcion, int min, int max,int Tolerancia, TipoInstrumento tipDinstrumentos) {
         this.Serie = Serie;
@@ -16,6 +17,15 @@ public class Instrumento {
         this.min = min;
         this.max = max;
         this.tipDinstrumentos = tipDinstrumentos;
+        calibraciones = new ListaCalibraciones();
+    }
+
+    public ListaCalibraciones getCalibraciones() {
+        return calibraciones;
+    }
+
+    public void setCalibraciones(ListaCalibraciones calibraciones) {
+        this.calibraciones = calibraciones;
     }
 
     public String getSerie() {
