@@ -56,7 +56,28 @@ public class ListaINSTRUMENTOS  {
     //-------------------------------------------------------------------------------------------       
       public  void     inicializarLista(){
           TipoInstrumento ti=new TipoInstrumento("555","Tipo de Instrumento 5","Grados F");
-                 Instrumento e= new Instrumento ("111","Descri D Instru con Tipo=5",2,4,1,ti); list.add(e);
+                 Instrumento e= new Instrumento ("111","Descri D Instru con Tipo=5",2,4,1,ti); 
+                    Calibracion c1 = new Calibracion("111", "111", "111", 2);
+                    c1.getMediciones().get(0).setLectura(1);
+                    c1.getMediciones().get(0).setNumero(1);
+                    c1.getMediciones().get(0).setReferencia(1);
+
+                    c1.getMediciones().get(1).setLectura(2);
+                    c1.getMediciones().get(1).setNumero(2);
+                    c1.getMediciones().get(1).setReferencia(2);
+
+                    Calibracion c2 = new Calibracion("222", "222", "222", 2);
+                    c2.getMediciones().get(0).setLectura(3);
+                    c2.getMediciones().get(0).setNumero(3);
+                    c2.getMediciones().get(0).setReferencia(3);
+
+                    c2.getMediciones().get(1).setLectura(4);
+                    c2.getMediciones().get(1).setNumero(5);
+                    c2.getMediciones().get(1).setReferencia(4);
+
+                    e.getCalibraciones().ingresar(c1);
+                    e.getCalibraciones().ingresar(c2);
+                 list.add(e);
        }
    //---------------------------------------------------------------------------------------------
       

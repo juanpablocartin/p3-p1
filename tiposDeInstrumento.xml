@@ -10,4 +10,9 @@
     <nombre>Barometro</nombre>
     <unidad>Grados</unidad>
   </tipoDeInstrumento>
+  <tipoDeInstrumento>
+    <codigo>1</codigo>
+    <nombre>1</nombre>
+    <unidad>1</unidad>
+  </tipoDeInstrumento>
 </tiposDeInstrumento>

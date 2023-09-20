@@ -448,7 +448,7 @@ public class Controladora implements ActionListener {
             PanCali.getJLInstrumentoSeleccionado().setText(s.toString());
             this.adminCalibraciones.setList(MANIinstrumrnto.getCalibraciones());
             this.adminCalibraciones.actualizarTabla();
-
+            
         }
 //--------------------------------------------------------------------------------
 
