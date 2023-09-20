@@ -32,13 +32,9 @@ import javax.swing.event.ListSelectionListener;
 public class Controladora implements ActionListener {
 
     private VenPri VenPricipal;
-    public boolean BOOLvp = false;
     private TipInstruJPanel PanTIPOSInstru;
-    public boolean BOOLti = false;
     private InstruJPanel PanInstru;
-    public boolean BOOLi = false;
     private CalibracionesJPanel PanCali;
-    public boolean BOOLcali = false;
 
     private ModelTabINSTRUMENTOS admiinstru;
     private ModelTabTipeInstrument admiTIPOSinstru;
@@ -47,6 +43,7 @@ public class Controladora implements ActionListener {
     private ListaTipoInstrumento listaTipos;
     private PDFReportGenerator pdf;
 
+    private Instrumento MANIinstrumrnto=null;
     //Lista global de tipos de instrumentos
     //-------------------------------------------------
     // -------------------------------- Calibraciones y mediciones ----------------------------------------
@@ -64,6 +61,7 @@ public class Controladora implements ActionListener {
 
         this.PanInstru = i;
         PanInstru.getbEditar().setEnabled(false);
+                PanInstru.getbEditarCali().setEnabled(false);
 
         this.PanCali = c;
         VenPricipal.getTABpri().addTab("Tipos de Instrumentos", PanTIPOSInstru);
@@ -106,6 +104,9 @@ public class Controladora implements ActionListener {
         this.PanInstru.getbReporte().addActionListener(this);
         this.PanInstru.getbEditar().addActionListener(this);
 
+        this.PanInstru.getbEditarCali().addActionListener(this);
+        //this.VenPricipal.getTABpri().(this);
+        
         this.PanTIPOSInstru.getBotonGuardar().addActionListener(this);
         this.PanTIPOSInstru.getBotonLimpiar().addActionListener(this);
         ///////Todo lo que va a escuchar/////////////
@@ -302,6 +303,56 @@ public class Controladora implements ActionListener {
 
             return;
         }
+         if (e.getSource().equals(PanInstru.getbBuscar())) {
+                  if (PanInstru.getTxDescriAbuscar().getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Debe poner una Descripcion a buscar", "Error", JOptionPane.ERROR_MESSAGE);
+                  }
+                  else {
+                    String aux = "";
+                    int auxSerieINDEX = -1;
+                    aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
+
+                    if (aux != "") {
+                        if (admiinstru.BuscarXserie(aux) == true) {
+                            
+                            int siOno;
+                            siOno = JOptionPane.showConfirmDialog(null, "EXITO SE ENCONTRO"
+                             + "\nLe gustaria editar dicho instrumento ? ", "|-Si=Yes-| |-No=No-|", JOptionPane.YES_NO_OPTION);
+                            
+                             if (siOno == JOptionPane.YES_OPTION) {
+                                 PanInstru.getTxDescriAbuscar().setEditable(false);
+                                 PanInstru.getTxSerie().setText(admiinstru.getInstruCONserie(aux).getSerie());
+                                 PanInstru.getTxDescripcion().setText(admiinstru.getInstruCONserie(aux).getDescripcion());
+                                 PanInstru.getTxMin().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMin()));
+                                 PanInstru.getTxMax().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getMax()));
+                                 PanInstru.getTxTolerancia().setText(Integer.toString(admiinstru.getInstruCONserie(aux).getTolerancia()));
+                                 PanInstru.getTxCB_Tipo().setSelectedIndex(
+                                 admiTIPOSinstru.getIndexDtipoInstruXcodigo(admiinstru.getInstruCONserie(aux).getTipDinstrumentos().getCodigo())
+                                );
+                                PanInstru.getbEditar().setEnabled(true);
+                                PanInstru.getbEditarCali().setEnabled(true);
+                            } else {
+                                 PanInstru.getTxSerie().setText("");
+                                 PanInstru.getTxTolerancia().setText("");
+                                 PanInstru.getTxMin().setText("");
+                                 PanInstru.getTxMax().setText("");
+                                 PanInstru.getTxDescripcion().setText("");
+                                 PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+                            }
+
+                        }
+                
+                    }
+                    else{
+                            JOptionPane.showMessageDialog(null, "No se encontro", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                    
+                    return;
+
+                }
+         }
+
+        
 //--------------------------------------------------------------------------------
         if (e.getSource().equals(PanInstru.getbBuscar())) {
 
@@ -394,6 +445,12 @@ public class Controladora implements ActionListener {
             }
         }
 //--------------------------------------------------------------------------------
+        if (e.getSource().equals(this.PanInstru.getbEditarCali())) {
+                    VenPricipal.getTABpri().setSelectedIndex(2);
+                    String aux = "";
+                    aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
+                    MANIinstrumrnto=admiinstru.getInstruCONserie(aux);
+        }
 //--------------------------------------------------------------------------------
 
         if (e.getSource().equals(this.PanCali.getJBguardar())) {
@@ -459,8 +516,8 @@ public class Controladora implements ActionListener {
                 JOptionPane.showMessageDialog(null, "No hay coincidencias", "Error", JOptionPane.INFORMATION_MESSAGE);
             }
         }
+    
     }
-
     public void agregarCalibracion() {
         Calibracion c;
         contCalibraciones++;
@@ -469,7 +526,9 @@ public class Controladora implements ActionListener {
         c.setMediciones(new ListaMediciones(c.getCantMediciones()));
         this.adminCalibraciones.ingresar(c);
     }
+
 }
+
 //estando en la que quiero cambiar "PULL" de esa misma rama pero del git
 //despues mearge revision y seleciono el ultimo comite de donde voy a sacr la info nueva 
 //despues accepto o no cosas 
