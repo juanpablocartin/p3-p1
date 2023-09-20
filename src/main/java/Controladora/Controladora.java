@@ -140,6 +140,7 @@ public class Controladora implements ActionListener {
         adminMediciones = new ModeloTabMediciones(listMed);
         this.PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
 
+        datosQuemados();
     }
 
     @Override
@@ -536,6 +537,30 @@ public class Controladora implements ActionListener {
         c.setMediciones(new ListaMediciones(c.getCantMediciones()));
         c.numReferenciaMed(this.MANIinstrumrnto.getMin(), this.MANIinstrumrnto.getMax());
         this.adminCalibraciones.ingresar(c);
+    }
+
+    public void datosQuemados() {
+        Calibracion c1 = new Calibracion("111", "111", "111", 2);
+        c1.getMediciones().get(0).setLectura(1);
+        c1.getMediciones().get(0).setNumero(1);
+        c1.getMediciones().get(0).setReferencia(1);
+
+        c1.getMediciones().get(1).setLectura(2);
+        c1.getMediciones().get(1).setNumero(2);
+        c1.getMediciones().get(1).setReferencia(2);
+
+        Calibracion c2 = new Calibracion("111", "111", "111", 2);
+        c2.getMediciones().get(0).setLectura(1);
+        c2.getMediciones().get(0).setNumero(1);
+        c2.getMediciones().get(0).setReferencia(1);
+
+        c2.getMediciones().get(1).setLectura(2);
+        c2.getMediciones().get(1).setNumero(2);
+        c2.getMediciones().get(1).setReferencia(2);
+
+        adminCalibraciones.ingresar(c1);
+        adminCalibraciones.ingresar(c2);        
+
     }
 
 }
