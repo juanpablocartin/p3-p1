@@ -134,6 +134,7 @@ public class Controladora implements ActionListener {
         this.PanCali.getJBbuscar().addActionListener(this);
         this.PanCali.getJBlimpiar().addActionListener(this);
         this.PanCali.getJBReporte().addActionListener(this);
+//        this.PanCali.get
         contCalibraciones = 0;
 
         listCalib = new ListaCalibraciones();
