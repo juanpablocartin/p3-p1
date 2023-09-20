@@ -59,4 +59,14 @@ public class ModeloTabMediciones {
         return col==2;
     }
     
+    public void actualizarTabla(){
+        modelo.setRowCount(0);
+        for(int i=0; i<mediciones.getTamano(); i++){
+            modelo.addRow(new Object[]{mediciones.get(i).getNumero(),mediciones.get(i).getReferencia(), mediciones.get(i).getLectura()});
+        }
+    }
+    
+    public void numerosReferencia(int min, int max){
+            mediciones.numReferencia(min, max);
+    }
 }
