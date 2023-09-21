@@ -16,7 +16,7 @@ public class Calibracion {
     private String numSerieInstrumento;
     private String fechaCalibracion;
     private int cantMediciones;
-    private ListaMediciones mediciones;
+    private ModeloTabMediciones medicionesL;
 
     public Calibracion() {
 
@@ -27,6 +27,15 @@ public class Calibracion {
         this.numSerieInstrumento = numSerieInstrumento;
         this.fechaCalibracion = fechaCalibracion;
         this.cantMediciones = cantMediciones;
+        medicionesL = new ModeloTabMediciones();
+    }
+
+    public ModeloTabMediciones getMedicionesL() {
+        return medicionesL;
+    }
+
+    public void setMedicionesL(ModeloTabMediciones medicionesL) {
+        this.medicionesL = medicionesL;
     }
 
     public String getFechaCalibracion() {
@@ -35,14 +44,6 @@ public class Calibracion {
 
     public void setFechaCalibracion(String fechaCalibracion) {
         this.fechaCalibracion = fechaCalibracion;
-    }
-
-    public ListaMediciones getMediciones() {
-        return mediciones;
-    }
-
-    public void setMediciones(ListaMediciones mediciones) {
-        this.mediciones = mediciones;
     }
 
     public String getNum() {
@@ -69,13 +70,8 @@ public class Calibracion {
         this.cantMediciones = cantMediciones;
     }
 
-    void setNumReferenciaMediciones(int min, int max) {
-        mediciones.numReferencia(min, max);
-
-    }
-
-    public void numReferenciaMed(int min, int max) {
-        mediciones.numReferencia(min, max);
+    public void setNumLecturaMediciones(int min, int max) {
+        medicionesL.numeroLectura(min, max);
 
     }
 
