@@ -216,8 +216,8 @@ public class PDFReportGenerator {
                     tabla.addCell(c.getNum());
                     tabla.addCell(c.getFechaCalibracion());
                     
-                    m = c.getMediciones().get(0);
-                    it2 = c.getMediciones().getMediciones().iterator();
+                    m = c.getMedicionesL().getMediciones().get(0);
+                    it2 = c.getMedicionesL().getMediciones().getMediciones().iterator();
                     while (it2.hasNext()) {
                         tabla2.addCell(String.valueOf(m.getNumero()));
                         tabla2.addCell(String.valueOf(m.getReferencia()));

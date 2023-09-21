@@ -94,7 +94,7 @@ public class Controladora implements ActionListener {
             }
 
         });
-        
+
         admiinstru = new ModelTabINSTRUMENTOS();
         i.getTablaDInstrumentos().setModel(admiinstru.getModelito());
         //En el evento de ADD Tipo de Instrumento se tiene que agregar la siguiente liniea de codigo
@@ -127,6 +127,11 @@ public class Controladora implements ActionListener {
         this.PanCali.getTFmedicionesCalibracion().setText("");
         this.PanCali.getJBborrar().setEnabled(false);
         this.PanCali.getTFnumeroCalibracion().setEnabled(false);
+        this.PanCali.getTFnumMedicion().setEnabled(false);
+        this.PanCali.getJBguardar().setEnabled(false);
+        this.PanCali.getJBlimpiar().setEnabled(false);
+        this.PanCali.getJBReporte().setEnabled(false);
+        this.PanCali.getJBbuscar().setEnabled(false);
 
         // set listeners de botones calibraciones
         this.PanCali.getJBguardar().addActionListener(this);
@@ -149,19 +154,17 @@ public class Controladora implements ActionListener {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    int filaSeleccionada = PanCali.getJTableMediciones().getSelectedRow();
-                    int colSeleccionada = PanCali.getJTableMediciones().getSelectedColumn();
-                    if (filaSeleccionada != -1) {
-                        if (adminMediciones.celdaEditable(colSeleccionada)) {
-                            String s = adminMediciones.getModelo().getValueAt(filaSeleccionada, 2).toString();
-                            adminMediciones.editarMedicion(filaSeleccionada, Integer.parseInt(s));
-                        }
+                    int medSeleccionada = PanCali.getJTableMediciones().getSelectedRow();
+                    int calibSeleccionada = PanCali.getJTableCalibraciones().getSelectedRow();
+                    if (medSeleccionada > -1) {
+                        Medicion m = MANIinstrumrnto.getCalibracionesL().getElementoPorPos(calibSeleccionada).getMedicionesL().getElemento(medSeleccionada);
+                        PanCali.getTFnumMedicion().setText(String.valueOf(m.getNumero()));
+                        PanCali.getTFnumLectura().setText(String.valueOf(m.getLectura()));
                     }
                 }
             }
 
         });
-      
 
         //Archivos---------------------------------------------------------------
         archivos = new ArchivosXML();
@@ -169,8 +172,7 @@ public class Controladora implements ActionListener {
         admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
         //------------------------------------------------------------------------
 
-        }
-    
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -357,11 +359,11 @@ public class Controladora implements ActionListener {
                         }
 
                     }
-                            StringBuilder s = new StringBuilder();
-                            s.append(this.MANIinstrumrnto.getSerie() + " - " + this.MANIinstrumrnto.getDescripcion() + "(" + this.MANIinstrumrnto.getMin() + " - " + this.MANIinstrumrnto.getMax() + " Grados celcius)");
-                            PanCali.getJLInstrumentoSeleccionado().setText(s.toString());
-                            this.adminCalibraciones.setList(MANIinstrumrnto.getCalibraciones());
-                            this.adminCalibraciones.actualizarTabla();
+                    StringBuilder s = new StringBuilder();
+                    s.append(this.MANIinstrumrnto.getSerie() + " - " + this.MANIinstrumrnto.getDescripcion() + "(" + this.MANIinstrumrnto.getMin() + " - " + this.MANIinstrumrnto.getMax() + " Grados celcius)");
+                    PanCali.getJLInstrumentoSeleccionado().setText(s.toString());
+                    this.adminCalibraciones = MANIinstrumrnto.getCalibracionesL();
+                    this.adminCalibraciones.actualizarTabla();
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontro", "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -421,13 +423,14 @@ public class Controladora implements ActionListener {
             VenPricipal.getTABpri().setSelectedIndex(2);
             String aux = "";
             aux = admiinstru.getSerieDEdecripcionX(PanInstru.getTxDescriAbuscar().getText());
-           
+            this.PanCali.getJBguardar().setEnabled(true);
+            this.PanCali.getJBlimpiar().setEnabled(true);
+            this.PanCali.getJBReporte().setEnabled(true);
+            this.PanCali.getJBbuscar().setEnabled(true);
             StringBuilder s = new StringBuilder();
             s.append(this.MANIinstrumrnto.getSerie() + " - " + this.MANIinstrumrnto.getDescripcion() + "(" + this.MANIinstrumrnto.getMin() + " - " + this.MANIinstrumrnto.getMax() + " Grados celcius)");
             PanCali.getJLInstrumentoSeleccionado().setText(s.toString());
-            this.adminCalibraciones.setList(MANIinstrumrnto.getCalibraciones());
-            this.adminCalibraciones.actualizarTabla();
-
+            this.PanCali.getJTableCalibraciones().setModel(MANIinstrumrnto.getCalibracionesL().getModelo());
 
         }
 //--------------------------------------------------------------------------------
@@ -444,8 +447,11 @@ public class Controladora implements ActionListener {
                 }
             } else {
                 String s = this.PanCali.getTFbuscarPorNumero().getText();
-                int pos = adminCalibraciones.getList().buscarPorNum(s);
+                int pos = MANIinstrumrnto.getCalibracionesL().getList().buscarPorNum(s);
                 actualizarMediciones(pos);
+                adminMediciones.setMediciones(MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().getMediciones());
+
+                MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().actualizarTabla();
 
             }
 
@@ -456,19 +462,23 @@ public class Controladora implements ActionListener {
             this.PanCali.getTFfechaCalibracion().setText("");
             PanCali.getJBborrar().setEnabled(false);
             this.PanCali.getTFbuscarPorNumero().setText("");
-            this.adminMediciones.setMediciones(new ListaMediciones());
+            this.adminMediciones.getMediciones().setTamano(0);
             adminMediciones.actualizarTabla();
+            this.PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
             PanCali.getJTableCalibraciones().clearSelection();
-            PanCali.getJTableMediciones().removeEditor();
+            PanCali.getJTableMediciones().clearSelection();
+            this.PanCali.getTFnumLectura().setText("");
+            this.PanCali.getTFnumMedicion().setText("");
 
         }
 
         if (e.getSource().equals(this.PanCali.getJBborrar())) {
             if (PanCali.getTFbuscarPorNumero().getText().compareTo("") != 0) {
                 String s = this.PanCali.getTFbuscarPorNumero().getText();
-                int filaSeleccionada = adminCalibraciones.getList().buscarPorNum(s);
-                adminCalibraciones.eliminarPorPos(filaSeleccionada);
-                PanCali.getJTableCalibraciones().setModel(adminCalibraciones.getModelo());
+
+                int filaSeleccionada = MANIinstrumrnto.getCalibracionesL().getList().buscarPorNum(s);
+                MANIinstrumrnto.getCalibracionesL().eliminarPorPos(filaSeleccionada);
+                PanCali.getJTableCalibraciones().setModel(MANIinstrumrnto.getCalibracionesL().getModelo());
 
                 // limpiar TFs
                 this.PanCali.getTFbuscarPorNumero().setText("");
@@ -476,8 +486,7 @@ public class Controladora implements ActionListener {
                 this.PanCali.getTFmedicionesCalibracion().setText("");
                 this.PanCali.getTFfechaCalibracion().setText("");
                 PanCali.getJBborrar().setEnabled(false);
-                this.adminCalibraciones.setList(new ListaCalibraciones());
-                adminCalibraciones.actualizarTabla();
+
                 this.adminMediciones.setMediciones(new ListaMediciones());
                 adminMediciones.actualizarTabla();
             }
@@ -486,7 +495,7 @@ public class Controladora implements ActionListener {
         if (e.getSource().equals(this.PanCali.getJBReporte())) {
             try {
                 JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado", "Informe", JOptionPane.INFORMATION_MESSAGE);
-                this.pdf = new PDFReportGenerator(adminCalibraciones.getList());
+                this.pdf = new PDFReportGenerator(MANIinstrumrnto.getCalibracionesL().getList());
 
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
@@ -495,15 +504,15 @@ public class Controladora implements ActionListener {
 
         if (e.getSource().equals(this.PanCali.getJBbuscar())) {
             String s = this.PanCali.getTFbuscarPorNumero().getText();
-            if (this.adminCalibraciones.getList().existe(s)) {
-                int pos = adminCalibraciones.getList().buscarPorNum(s);
+            if (this.MANIinstrumrnto.getCalibracionesL().getList().existe(s)) {
+                int pos = MANIinstrumrnto.getCalibracionesL().getList().buscarPorNum(s);
                 this.PanCali.getJTableCalibraciones().setRowSelectionInterval(pos, pos);
                 PanCali.getJBborrar().setEnabled(true);
                 PanCali.getTFnumeroCalibracion().setText(s);
-                PanCali.getTFfechaCalibracion().setText(this.adminCalibraciones.getElementoPorPos(pos).getFechaCalibracion());
-                String cantM = String.valueOf(this.adminCalibraciones.getElementoPorPos(pos).getCantMediciones());
+                PanCali.getTFfechaCalibracion().setText(this.MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getFechaCalibracion());
+                String cantM = String.valueOf(this.MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getCantMediciones());
                 PanCali.getTFmedicionesCalibracion().setText(cantM);
-                adminMediciones.setMediciones(adminCalibraciones.getElementoPorPos(pos).getMediciones());
+                adminMediciones.setMediciones(MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().getMediciones());
                 adminMediciones.actualizarTabla();
                 PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
 
@@ -514,45 +523,45 @@ public class Controladora implements ActionListener {
 
     }
 
-            public void actualizarMediciones(int pos) {
-                for (int i = 0; i < adminCalibraciones.getList().get(pos).getMediciones().getTamano(); i++) {
-                    String s = adminMediciones.getModelo().getValueAt(i, 2).toString();
-                    adminMediciones.editarMedicion(i, Integer.parseInt(s));
-                }
-            }
-  
+    public void actualizarMediciones(int pos) {
+        int fila = PanCali.getJTableMediciones().getSelectedRow();
+        String s = PanCali.getTFnumLectura().getText();
+        MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().editarMedicion(fila, Integer.parseInt(s));
+        MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().actualizarTabla();
+        this.PanCali.getJTableMediciones().setModel(MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().getModelo());
+    }
 
     public void agregarCalibracion() {
         Calibracion c;
         contCalibraciones++;
         String s = String.valueOf(contCalibraciones);
         c = new Calibracion(s, "", PanCali.getTFfechaCalibracion().getText(), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
-        c.setMediciones(new ListaMediciones(c.getCantMediciones()));
-        c.numReferenciaMed(this.MANIinstrumrnto.getMin(), this.MANIinstrumrnto.getMax());
-        this.adminCalibraciones.ingresar(c);
+        c.setMedicionesL(new ModeloTabMediciones(c.getCantMediciones()));
+        c.setNumLecturaMediciones(this.MANIinstrumrnto.getMin(), this.MANIinstrumrnto.getMax());
+        this.MANIinstrumrnto.getCalibracionesL().ingresar(c);
     }
 
     public void datosQuemados() {
         Calibracion c1 = new Calibracion("111", "111", "111", 2);
-        c1.getMediciones().get(0).setLectura(1);
-        c1.getMediciones().get(0).setNumero(1);
-        c1.getMediciones().get(0).setReferencia(1);
+        c1.getMedicionesL().getMediciones().get(0).setLectura(1);
+        c1.getMedicionesL().getMediciones().get(0).setNumero(1);
+        c1.getMedicionesL().getMediciones().get(0).setReferencia(1);
 
-        c1.getMediciones().get(1).setLectura(2);
-        c1.getMediciones().get(1).setNumero(2);
-        c1.getMediciones().get(1).setReferencia(2);
+        c1.getMedicionesL().getMediciones().get(1).setLectura(2);
+        c1.getMedicionesL().getMediciones().get(1).setNumero(2);
+        c1.getMedicionesL().getMediciones().get(1).setReferencia(2);
 
         Calibracion c2 = new Calibracion("222", "222", "222", 2);
-        c2.getMediciones().get(0).setLectura(3);
-        c2.getMediciones().get(0).setNumero(3);
-        c2.getMediciones().get(0).setReferencia(3);
+        c2.getMedicionesL().getMediciones().get(0).setLectura(3);
+        c2.getMedicionesL().getMediciones().get(0).setNumero(3);
+        c2.getMedicionesL().getMediciones().get(0).setReferencia(3);
 
-        c2.getMediciones().get(1).setLectura(4);
-        c2.getMediciones().get(1).setNumero(5);
-        c2.getMediciones().get(1).setReferencia(4);
+        c2.getMedicionesL().getMediciones().get(1).setLectura(4);
+        c2.getMedicionesL().getMediciones().get(1).setNumero(5);
+        c2.getMedicionesL().getMediciones().get(1).setReferencia(4);
 
-        adminCalibraciones.ingresar(c1);
-        adminCalibraciones.ingresar(c2);        
+        MANIinstrumrnto.getCalibracionesL().ingresar(c1);
+        MANIinstrumrnto.getCalibracionesL().ingresar(c2);
 
     }
 

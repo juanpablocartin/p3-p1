@@ -92,7 +92,6 @@ public class ArchivosXML {
 
                 TipoInstrumento t = new TipoInstrumento(codigo, nombre, unidad);
                 modelo.insertarTipoInstrumento(t);
-
             }
 
         } catch (JDOMException ex) {
@@ -102,5 +101,6 @@ public class ArchivosXML {
         }
 
     }
+    
     
 }
