@@ -29,7 +29,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-public class Controladora implements ActionListener {
+public class Controladora implements ActionListener {//lililil
 
     private VenPri VenPricipal;
     private TipInstruJPanel PanTIPOSInstru;
