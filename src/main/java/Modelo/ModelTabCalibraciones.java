@@ -16,14 +16,26 @@ public class ModelTabCalibraciones {
     private ListaCalibraciones lista;
 
     public ModelTabCalibraciones() {
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               return false;
+            }
+            
+        };
         lista = new ListaCalibraciones();
         formatoModelo();
     }
 
     public ModelTabCalibraciones(ListaCalibraciones lista) {
         this.lista = lista;
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               return false;
+            }
+            
+        };
         formatoModelo();
 
     }

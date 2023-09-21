@@ -451,8 +451,6 @@ public class Controladora implements ActionListener {
                 actualizarMediciones(pos);
                 adminMediciones.setMediciones(MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().getMediciones());
 
-                MANIinstrumrnto.getCalibracionesL().getElementoPorPos(pos).getMedicionesL().actualizarTabla();
-
             }
 
         }
@@ -462,7 +460,7 @@ public class Controladora implements ActionListener {
             this.PanCali.getTFfechaCalibracion().setText("");
             PanCali.getJBborrar().setEnabled(false);
             this.PanCali.getTFbuscarPorNumero().setText("");
-            this.adminMediciones.getMediciones().setTamano(0);
+            this.adminMediciones.setMediciones(new ListaMediciones());
             adminMediciones.actualizarTabla();
             this.PanCali.getJTableMediciones().setModel(adminMediciones.getModelo());
             PanCali.getJTableCalibraciones().clearSelection();
