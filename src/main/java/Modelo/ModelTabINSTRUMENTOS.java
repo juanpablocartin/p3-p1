@@ -15,7 +15,13 @@ public class ModelTabINSTRUMENTOS {
     }  
   //--------------------------------------------------------------------
         public ModelTabINSTRUMENTOS() {
-               this.modelito= new DefaultTableModel();
+               this.modelito= new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               return false;
+            }
+            
+        };
                this.lis= new ListaINSTRUMENTOS();  
                this.darFormatoModelo();
                this.inicializarModelo(); 

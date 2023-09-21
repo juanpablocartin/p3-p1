@@ -94,7 +94,7 @@ public class Controladora implements ActionListener {
             }
 
         });
-
+        
         admiinstru = new ModelTabINSTRUMENTOS();
         i.getTablaDInstrumentos().setModel(admiinstru.getModelito());
         //En el evento de ADD Tipo de Instrumento se tiene que agregar la siguiente liniea de codigo
