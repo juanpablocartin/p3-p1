@@ -15,14 +15,20 @@ public class ModeloTabMediciones {
     private DefaultTableModel modelo;
     private ListaMediciones mediciones;
 
-    public ModeloTabMediciones(DefaultTableModel modelo, ListaMediciones mediciones) {
-        this.modelo = modelo;
-        this.mediciones = mediciones;
-    }
+//    public ModeloTabMediciones(DefaultTableModel modelo, ListaMediciones mediciones) {
+//        this.modelo = modelo;
+//        this.mediciones = mediciones;
+//    }
 
     public ModeloTabMediciones(ListaMediciones mediciones) {
         this.mediciones = mediciones;
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               return false;
+            }
+            
+        };
         formatoModelo();
     }
 
@@ -31,7 +37,13 @@ public class ModeloTabMediciones {
     }
 
     public ModeloTabMediciones(int tam) {
-        modelo = new DefaultTableModel();
+        modelo = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+               return false;
+            }
+            
+        };
         mediciones = new ListaMediciones(tam);
         formatoModelo();
 
