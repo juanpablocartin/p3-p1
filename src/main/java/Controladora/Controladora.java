@@ -412,7 +412,7 @@ public class Controladora implements ActionListener {//lililil
 //--------------------------------------------------------------------------------
         if (e.getSource().equals(this.PanInstru.getbReporte())) {
             try {
-                this.pdf = new PDFReportGenerator(this.admiinstru.getLista());
+                this.pdf = new PDFReportGenerator(MANIinstrumrnto.getCalibracionesL().getList());
                 JOptionPane.showMessageDialog(this.VenPricipal, "Informe generado", "Informe", JOptionPane.INFORMATION_MESSAGE);
             } catch (FileNotFoundException ex) {
                 Logger.getLogger(Controladora.class.getName()).log(Level.SEVERE, null, ex);
@@ -427,6 +427,8 @@ public class Controladora implements ActionListener {//lililil
             this.PanCali.getJBlimpiar().setEnabled(true);
             this.PanCali.getJBReporte().setEnabled(true);
             this.PanCali.getJBbuscar().setEnabled(true);
+            MANIinstrumrnto = admiinstru.getInstruCONserie(aux);
+            contCalibraciones = 0;
             StringBuilder s = new StringBuilder();
             s.append(this.MANIinstrumrnto.getSerie() + " - " + this.MANIinstrumrnto.getDescripcion() + "(" + this.MANIinstrumrnto.getMin() + " - " + this.MANIinstrumrnto.getMax() + " Grados celcius)");
             PanCali.getJLInstrumentoSeleccionado().setText(s.toString());

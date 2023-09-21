@@ -162,16 +162,16 @@ public class PDFReportGenerator {
 
     public void generaDocumento3() {
         try {
-            PdfWriter.getInstance(documento, new FileOutputStream("Informe.pdf"));
+            PdfWriter.getInstance(documento, new FileOutputStream("InformeCalibraciones.pdf"));
             documento.open();
             documento.setPageSize(A4);
 
             Iterator<Calibracion> it = listaCalib.getCalibraciones().iterator();
             Iterator<Medicion> it2;
 
-            Paragraph titulo = new Paragraph("Reporte calibraciones");
+            Paragraph titulo = new Paragraph("********Reporte calibraciones*********");
             titulo.setAlignment(Element.ALIGN_CENTER);
-            titulo.setSpacingAfter(20f);
+            titulo.setSpacingAfter(30f);
             documento.add(new com.itextpdf.text.pdf.draw.LineSeparator(0.5f, 100, null, 0, -5f));
             PdfPTable tabla = new PdfPTable(3);
             tabla.setWidthPercentage(100);
@@ -189,9 +189,10 @@ public class PDFReportGenerator {
             cell = new PdfPCell(new Paragraph("Mediciones"));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.GRAY);
-
+            tabla.addCell(cell);
+            
             PdfPTable tabla2 = new PdfPTable(3);
-
+            
             PdfPCell cell2 = new PdfPCell(new Paragraph("# Medicion"));
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -206,18 +207,19 @@ public class PDFReportGenerator {
             cell2.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell2.setBackgroundColor(BaseColor.LIGHT_GRAY);
             tabla2.addCell(cell2);
-
-            cell.addElement(tabla2);
+            
+            
 
             if (!listaCalib.getCalibraciones().isEmpty()) {
-                Calibracion c = listaCalib.get(0);
+                Calibracion c;
                 Medicion m;
                 while (it.hasNext()) {
+                    c = it.next();
                     tabla.addCell(c.getNum());
                     tabla.addCell(c.getFechaCalibracion());
-                    
-                    m = c.getMedicionesL().getMediciones().get(0);
+
                     it2 = c.getMedicionesL().getMediciones().getMediciones().iterator();
+                    m = it2.next();
                     while (it2.hasNext()) {
                         tabla2.addCell(String.valueOf(m.getNumero()));
                         tabla2.addCell(String.valueOf(m.getReferencia()));
@@ -225,10 +227,10 @@ public class PDFReportGenerator {
                         tabla.addCell(tabla2);
                         m = it2.next();
                     }
-                    c = it.next();
                 }
             }
-
+            cell.addElement(tabla2);
+            tabla.addCell(cell);
             documento.add(titulo);
             documento.add(tabla);
             documento.close();
