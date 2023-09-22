@@ -14,6 +14,7 @@ public class ModelTabCalibraciones {
 
     private DefaultTableModel modelo;
     private ListaCalibraciones lista;
+    private int numCalib;
 
     public ModelTabCalibraciones() {
         modelo = new DefaultTableModel(){
@@ -25,6 +26,7 @@ public class ModelTabCalibraciones {
         };
         lista = new ListaCalibraciones();
         formatoModelo();
+        numCalib = 1;
     }
 
     public ModelTabCalibraciones(ListaCalibraciones lista) {
@@ -69,6 +71,7 @@ public class ModelTabCalibraciones {
     }
 
     public void ingresar(Calibracion c) {
+        c.setNum(String.valueOf(numCalib++));
         lista.ingresar(c);
         modelo.addRow(new Object[]{"# "+c.getNum(), c.getFechaCalibracion(), c.getCantMediciones()});
     }

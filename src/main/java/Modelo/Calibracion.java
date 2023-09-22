@@ -70,8 +70,8 @@ public class Calibracion {
         this.cantMediciones = cantMediciones;
     }
 
-    public void setNumLecturaMediciones(int min, int max) {
-        medicionesL.numeroLectura(min, max);
+    public void setNumRefMediciones(int min, int max) {
+        medicionesL.setNumRefMediciones(min, max);
 
     }
 

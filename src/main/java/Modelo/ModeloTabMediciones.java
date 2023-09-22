@@ -89,7 +89,7 @@ public class ModeloTabMediciones {
         }
     }
 
-    public void numeroLectura(int min, int max) {
+    public void setNumRefMediciones(int min, int max) {
         int rango = max - min;
         int aumento = rango / mediciones.getTamano();
         int numRef = min;

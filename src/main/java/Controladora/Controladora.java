@@ -533,11 +533,9 @@ public class Controladora implements ActionListener {//lililil
 
     public void agregarCalibracion() {
         Calibracion c;
-        contCalibraciones++;
-        String s = String.valueOf(contCalibraciones);
-        c = new Calibracion(s, "", PanCali.getTFfechaCalibracion().getText(), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
+        c = new Calibracion("", MANIinstrumrnto.getSerie(), PanCali.getTFfechaCalibracion().getText(), Integer.parseInt(PanCali.getTFmedicionesCalibracion().getText()));
         c.setMedicionesL(new ModeloTabMediciones(c.getCantMediciones()));
-        c.setNumLecturaMediciones(this.MANIinstrumrnto.getMin(), this.MANIinstrumrnto.getMax());
+        c.setNumRefMediciones(this.MANIinstrumrnto.getMin(), this.MANIinstrumrnto.getMax());
         this.MANIinstrumrnto.getCalibracionesL().ingresar(c);
     }
 
