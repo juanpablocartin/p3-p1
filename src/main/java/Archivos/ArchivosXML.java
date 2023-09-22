@@ -201,51 +201,69 @@ public class ArchivosXML {
 
     }
 
-    public void leeInstrumentos(String ruta, ModelTabINSTRUMENTOS modelo, ListaTipoInstrumento lTP) {
+    public void leeInstrumentos(String ruta, ModelTabINSTRUMENTOS modelo) {
 
         try {
 
             SAXBuilder builder = new SAXBuilder();
             File xml = new File(ruta);
             Document doc = builder.build(xml);
+            
             Element root = doc.getRootElement();
-            List<Element> list = root.getChildren();
-            List<Element> listC, listM;
-            Calibracion c = new Calibracion();
-
+            
+            Element instrumentos = root.getChild("instrumentos");
+            List<Element> listC, listM, list;
+            Calibracion c = null;
+            TipoInstrumento tI=null;
+//            Medicion m = null;
+            
+            list = instrumentos.getChildren("instru");
+            
             for (int i = 0; i < list.size(); i++) {
-                Element tipo = list.get(i);
-                String serie = tipo.getChildTextTrim("serie");
-                String descripcion = tipo.getChildTextTrim("descripcion");
-                String min = tipo.getChildTextTrim("min");
-                String max = tipo.getChildTextTrim("max");
-                String tolerancia = tipo.getChildTextTrim("tolerancia");
-
-                // guarda nada mas el codigo del tipo de instrumento
-                String codTipoInstrumento = tipo.getChildText("tipoInstrumento");
+                Element instru = list.get(i);
+                String serie = instru.getChildTextTrim("serie");
+                String descripcion = instru.getChildTextTrim("descripcion");
+                String min = instru.getChildTextTrim("min");
+                String max = instru.getChildTextTrim("max");
+                String tolerancia = instru.getChildTextTrim("tolerancia");
+                
+                ////////////////////////////////////////////////////////////////
+                Element tipoInstrumento = instru.getChild("TipoInstrumento");
+                String codigo = tipoInstrumento.getChildTextTrim("codigo");
+                String nombre = tipoInstrumento.getChildTextTrim("nombre");
+                String unidad = tipoInstrumento.getChildTextTrim("unidad");
+                tI = new TipoInstrumento(codigo, nombre, unidad);
+                /////////////////////////////////////////////////////////////////
 
                 // crea instrumento con datos
                 Instrumento inst = new Instrumento(serie, descripcion, Integer.parseInt(min),
                         Integer.parseInt(max), Integer.parseInt(tolerancia),
-                        lTP.buscaTipoInsturmento(codTipoInstrumento));
+                        tI);
 
                 // recuperar calibraciones:
                 // solo se recuperan la fecha, la cantidad de mediciones y las mediciones
-                listC = tipo.getChildren("calibraciones");
+                Element calibraciones = instru.getChild("calibraciones");
+                listC = calibraciones.getChildren();
                 for (int j = 0; j < listC.size(); j++) {
-                    Element tC = listC.get(j);
-                    String fecha = tC.getChildTextTrim("fecha");
-                    String cantMediciones = tC.getChildTextTrim("cantMediciones");
-
+                    Element cali = listC.get(j);
+                    
+                    String numSerieInstrumento = cali.getChildTextTrim("numSerieInstrumento");
+                    String fecha = cali.getChildTextTrim("fecha");
+                    String cantMediciones = cali.getChildTextTrim("cantMediciones");                  
+                    
                     // crea la calibracion con todos los datos
                     c = new Calibracion(String.valueOf(j + 1), serie, fecha,
                             Integer.parseInt(cantMediciones));
 
-                    listM = tC.getChildren();
+                    
+                    Element mediciones = cali.getChild("mediciones");
+                    listM = mediciones.getChildren();
                     for (int k = 0; k < listM.size(); k++) {
-                        Element tM = listM.get(k);
-                        String numLectura = tM.getChildTextTrim("numLectura");
-                        c.getMedicionesL().editarMedicion(k, Integer.parseInt(numLectura));
+                        Element medi = listM.get(k);
+                        String numeroM = medi.getChildTextTrim("numeroM");
+                        String referencia = medi.getChildTextTrim("referencia");
+                        String lectura = medi.getChildTextTrim("lectura");
+                        c.getMedicionesL().editarMedicion(k, Integer.parseInt(lectura));
                         c.getMedicionesL().getElemento(k).setNumero(k + 1);
                     }
                     c.setNumRefMediciones(Integer.parseInt(min), Integer.parseInt(max));
@@ -262,4 +280,3 @@ public class ArchivosXML {
     }
 
 }
-//String num, String numSerieInstrumento, String fechaCalibracion, int cantMediciones

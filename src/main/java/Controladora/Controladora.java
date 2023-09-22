@@ -169,6 +169,7 @@ public class Controladora implements ActionListener {//lililil
         //Archivos---------------------------------------------------------------
         archivos = new ArchivosXML();
         archivos.leeTiposDeInstrumentos("tiposDeInstrumento.xml", admiTIPOSinstru);
+        archivos.leeInstrumentos("Ainstrumentos.xml", admiinstru);
         admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
         //------------------------------------------------------------------------
 
@@ -305,6 +306,7 @@ public class Controladora implements ActionListener {//lililil
                 admiinstru.insertarInstru(auxInstru);
                 System.out.println(this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()).toString());
                 System.out.println("\n");
+                this.archivos.guardaInstrumentos(this.admiinstru.getLista());
 
             }
             return;
@@ -397,6 +399,7 @@ public class Controladora implements ActionListener {//lililil
             PanInstru.getTxDescriAbuscar().setText("");
             PanInstru.getTxDescriAbuscar().setEditable(true);
             PanInstru.getbEditar().setEnabled(false);
+            this.archivos.guardaInstrumentos(this.admiinstru.getLista());
 
         }
 
@@ -407,6 +410,8 @@ public class Controladora implements ActionListener {//lililil
             } else {
                 admiinstru.getLista().getElemento(PanInstru.getTablaDInstrumentos().getSelectedRow());
                 admiinstru.borrarRegistro(PanInstru.getTablaDInstrumentos().getSelectedRow());
+                this.archivos.guardaInstrumentos(this.admiinstru.getLista());
+
             }
         }
 //--------------------------------------------------------------------------------
