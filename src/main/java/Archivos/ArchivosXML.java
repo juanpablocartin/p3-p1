@@ -192,7 +192,7 @@ public class ArchivosXML {
             }
             XMLOutputter xml = new XMLOutputter();
             xml.setFormat(Format.getPrettyFormat());
-            xml.output(doc, new FileWriter("Ainstrumentos.xml"));
+            xml.output(doc, new FileWriter("instrumentos.xml"));
             }catch (IOException ex) {
                 System.out.println(ex.getMessage());
             }
