@@ -103,47 +103,11 @@ public class ArchivosXML {
         }
 
     }
-    
-//    public void guardarListaCalibraciones(ListaCalibraciones lC){
-//        Iterator it = lC.getCalibraciones().iterator();
-//        Calibracion aux;
-//        while(it.hasNext()){
-//            aux = (Calibracion)it.next();
-//            guardaCalibraciones(aux);
-//        }
-//    }
+    public void guardaInstrumentos(ListaINSTRUMENTOS lI){
 
-//    public void guardaCalibraciones(Calibracion c) {
-//        Iterator<Medicion> it = c.getMedicionesL().getMediciones().getMediciones().iterator();
-//        Medicion aux;
-//        try {
-//            Element calibracionE = new Element("calibracion");
-//            Document doc = new Document(calibracionE);
-//
-//            Element numSerieC = new Element("numSerieC");
-//            numSerieC.setText(c.getNumSerieInstrumento());
-//            Element fecha = new Element("fecha");
-//            fecha.setText(c.getFechaCalibracion());
-//            Element cantMediciones = new Element("cantMediciones");
-//            cantMediciones.setText(String.valueOf(c.getCantMediciones()));
-//            Element numLectura = new Element("numLectura");
-//
-//            while (it.hasNext()) {
-//                aux = it.next();
-//                numLectura.setText(String.valueOf(aux.getLectura()));
-//
-//            }
-//            XMLOutputter xml = new XMLOutputter();
-//            xml.setFormat(Format.getPrettyFormat());
-//            xml.output(doc, new FileWriter("Calibraciones.xml"));
-//
-//        } catch (IOException ex) {
-//            Logger.getLogger(ArchivosXML.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//    public void leerCalibraciones(){
-//        
-//    }
+        
+    }
+
 
 
 }
