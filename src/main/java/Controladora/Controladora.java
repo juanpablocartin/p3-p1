@@ -303,8 +303,13 @@ public class Controladora implements ActionListener {//lililil
                         Integer.parseInt(PanInstru.getTxTolerancia().getText()),
                         this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()));
                 admiinstru.insertarInstru(auxInstru);
-                System.out.println(this.admiTIPOSinstru.getTipDinstruXnombre(PanInstru.getTxCB_Tipo().getSelectedItem().toString()).toString());
-                System.out.println("\n");
+                PanInstru.getTxSerie().setText("");
+                PanInstru.getTxTolerancia().setText("");
+                PanInstru.getTxMin().setText("");
+                PanInstru.getTxMax().setText("");
+                PanInstru.getTxDescripcion().setText("");
+                PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+                this.archivos.guardaInstrumentos(this.admiinstru.getLista());
 
             }
             return;
@@ -397,7 +402,9 @@ public class Controladora implements ActionListener {//lililil
             PanInstru.getTxDescriAbuscar().setText("");
             PanInstru.getTxDescriAbuscar().setEditable(true);
             PanInstru.getbEditar().setEnabled(false);
-
+            PanInstru.getbEditarCali().setEnabled(false);
+            ///Despues de editar
+            this.archivos.guardaInstrumentos(this.admiinstru.getLista());
         }
 
 //--------------------------------------------------------------------------------
@@ -405,8 +412,15 @@ public class Controladora implements ActionListener {//lililil
             if (PanInstru.getTablaDInstrumentos().getSelectedRow() == -1) {
                 JOptionPane.showMessageDialog(null, "Debe selecionar un Instrumento de la tabla para borrar", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                admiinstru.getLista().getElemento(PanInstru.getTablaDInstrumentos().getSelectedRow());
-                admiinstru.borrarRegistro(PanInstru.getTablaDInstrumentos().getSelectedRow());
+                if(admiinstru.getLista().getElemento(PanInstru.getTablaDInstrumentos().getSelectedRow()).getCalibracionesL().getList().tamano()>0){
+                    JOptionPane.showMessageDialog(null, "No se puede borrar un instrumento con calibracciones", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else{
+                    //admiinstru.getLista().getElemento(PanInstru.getTablaDInstrumentos().getSelectedRow());
+                    admiinstru.borrarRegistro(PanInstru.getTablaDInstrumentos().getSelectedRow());
+                    //despues de Borrar
+                    this.archivos.guardaInstrumentos(this.admiinstru.getLista());
+                }
             }
         }
 //--------------------------------------------------------------------------------
@@ -431,7 +445,18 @@ public class Controladora implements ActionListener {//lililil
             s.append(this.MANIinstrumrnto.getSerie() + " - " + this.MANIinstrumrnto.getDescripcion() + "(" + this.MANIinstrumrnto.getMin() + " - " + this.MANIinstrumrnto.getMax() + " Grados celcius)");
             PanCali.getJLInstrumentoSeleccionado().setText(s.toString());
             this.PanCali.getJTableCalibraciones().setModel(MANIinstrumrnto.getCalibracionesL().getModelo());
-
+            
+            
+            PanInstru.getTxSerie().setText("");
+            PanInstru.getTxTolerancia().setText("");
+            PanInstru.getTxMin().setText("");
+            PanInstru.getTxMax().setText("");
+            PanInstru.getTxDescripcion().setText("");
+            PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
+            PanInstru.getTxDescriAbuscar().setText("");
+            PanInstru.getTxDescriAbuscar().setEditable(true);
+            PanInstru.getbEditar().setEnabled(false);
+            PanInstru.getbEditarCali().setEnabled(false);
         }
 //--------------------------------------------------------------------------------
 
