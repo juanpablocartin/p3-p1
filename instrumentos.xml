@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RootInstrumentos>
+  <Instrumentos>
+    <instru>
+      <Serie>4</Serie>
+      <Descripcion>4</Descripcion>
+      <min>4</min>
+      <max>4</max>
+      <Tolerancia>4</Tolerancia>
+      <TipoInstrumento>
+        <codigo>BAR</codigo>
+        <nombre>Barometro</nombre>
+        <unidad>Grados</unidad>
+      </TipoInstrumento>
+      <Calibraciones />
+    </instru>
+  </Instrumentos>
+</RootInstrumentos>

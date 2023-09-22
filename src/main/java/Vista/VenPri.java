@@ -48,6 +48,7 @@ public class VenPri extends javax.swing.JFrame {
                 InstruJPanel pinstru=new InstruJPanel();
                 VenPri v=new VenPri(); 
                 Controladora c=new Controladora(v,pti,pinstru,pcali);
+
             }
         });
     }

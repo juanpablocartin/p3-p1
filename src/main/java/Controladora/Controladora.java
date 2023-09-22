@@ -171,7 +171,7 @@ public class Controladora implements ActionListener {//lililil
         archivos.leeTiposDeInstrumentos("tiposDeInstrumento.xml", admiTIPOSinstru);
         admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
         //------------------------------------------------------------------------
-
+        
     }
 
     @Override
@@ -309,9 +309,9 @@ public class Controladora implements ActionListener {//lililil
                 PanInstru.getTxMax().setText("");
                 PanInstru.getTxDescripcion().setText("");
                 PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
-                this.archivos.guardaInstrumentos(this.admiinstru.getLista());
 
             }
+            this.archivos.guardaInstrumentos(this.admiinstru.getLista());
             return;
         }
 //--------------------------------------------------------------------------------
