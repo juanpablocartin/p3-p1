@@ -29,6 +29,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.WindowConstants;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Controladora implements ActionListener {//lililil
 
@@ -171,6 +174,13 @@ public class Controladora implements ActionListener {//lililil
         archivos.leeTiposDeInstrumentos("tiposDeInstrumento.xml", admiTIPOSinstru);
         admiTIPOSinstru.modificaCOMBOBOX(PanInstru.getTxCB_Tipo());
         //------------------------------------------------------------------------
+        VenPricipal.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        VenPricipal.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                archivos.guardaInstrumentos(admiinstru.getLista());
+            }
+        });
         
     }
 
@@ -311,7 +321,6 @@ public class Controladora implements ActionListener {//lililil
                 PanInstru.getTxCB_Tipo().setSelectedIndex(-1);
 
             }
-            this.archivos.guardaInstrumentos(this.admiinstru.getLista());
             return;
         }
 //--------------------------------------------------------------------------------
@@ -403,8 +412,7 @@ public class Controladora implements ActionListener {//lililil
             PanInstru.getTxDescriAbuscar().setEditable(true);
             PanInstru.getbEditar().setEnabled(false);
             PanInstru.getbEditarCali().setEnabled(false);
-            ///Despues de editar
-            this.archivos.guardaInstrumentos(this.admiinstru.getLista());
+            
         }
 
 //--------------------------------------------------------------------------------
@@ -419,7 +427,6 @@ public class Controladora implements ActionListener {//lililil
                     //admiinstru.getLista().getElemento(PanInstru.getTablaDInstrumentos().getSelectedRow());
                     admiinstru.borrarRegistro(PanInstru.getTablaDInstrumentos().getSelectedRow());
                     //despues de Borrar
-                    this.archivos.guardaInstrumentos(this.admiinstru.getLista());
                 }
             }
         }

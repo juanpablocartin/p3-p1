@@ -9,7 +9,8 @@ public class VenPri extends javax.swing.JFrame {
 
     public VenPri() {
         initComponents();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //YA NO 
+        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public JTabbedPane getTABpri() {
@@ -48,7 +49,6 @@ public class VenPri extends javax.swing.JFrame {
                 InstruJPanel pinstru=new InstruJPanel();
                 VenPri v=new VenPri(); 
                 Controladora c=new Controladora(v,pti,pinstru,pcali);
-
             }
         });
     }

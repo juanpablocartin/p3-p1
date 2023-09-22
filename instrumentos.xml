@@ -1,18 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RootInstrumentos>
-  <Instrumentos>
-    <instru>
-      <Serie>4</Serie>
-      <Descripcion>4</Descripcion>
-      <min>4</min>
-      <max>4</max>
-      <Tolerancia>4</Tolerancia>
-      <TipoInstrumento>
-        <codigo>BAR</codigo>
-        <nombre>Barometro</nombre>
-        <unidad>Grados</unidad>
-      </TipoInstrumento>
-      <Calibraciones />
-    </instru>
-  </Instrumentos>
+  <instru>
+    <Serie>111</Serie>
+    <Descripcion>Descri D Instru con Tipo=5</Descripcion>
+    <min>2</min>
+    <max>4</max>
+    <Tolerancia>1</Tolerancia>
+    <TipoInstrumento>
+      <codigo>555</codigo>
+      <nombre>Tipo de Instrumento 5</nombre>
+      <unidad>Grados F</unidad>
+    </TipoInstrumento>
+    <Calibraciones />
+  </instru>
+  <instru>
+    <Serie>123</Serie>
+    <Descripcion>123</Descripcion>
+    <min>123</min>
+    <max>123</max>
+    <Tolerancia>123</Tolerancia>
+    <TipoInstrumento>
+      <codigo>TER</codigo>
+      <nombre>Termometro</nombre>
+      <unidad>Grados</unidad>
+    </TipoInstrumento>
+    <Calibraciones>
+      <cali>
+        <num>1</num>
+        <numSerieInstrumento />
+        <fechaCalibracion>1</fechaCalibracion>
+        <cantMediciones>2</cantMediciones>
+        <mediciones>
+          <medi>
+            <numeroM>1</numeroM>
+            <referencia>123</referencia>
+            <lectura>1</lectura>
+          </medi>
+          <medi>
+            <numeroM>2</numeroM>
+            <referencia>123</referencia>
+            <lectura>0</lectura>
+          </medi>
+        </mediciones>
+      </cali>
+    </Calibraciones>
+  </instru>
 </RootInstrumentos>

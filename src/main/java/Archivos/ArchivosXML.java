@@ -108,14 +108,13 @@ public class ArchivosXML {
             Element RootInstrumentos = new Element("RootInstrumentos");
             Document doc = new Document(RootInstrumentos);
 
-            Element Instrumentos = new Element("Instrumentos");
-            RootInstrumentos.addContent(Instrumentos);
-
-            Element instru = new Element("instru");
-            //public Instrumento(String Serie, String Descripcion, int min, int max,int Tolerancia, TipoInstrumento tipDinstrumentos)
+            Element instru; 
             for (int i = 0; i < lista.getArrayList().size(); i++){
+                instru = new Element("instru");
                 Instrumento aux=null;
                 aux=lista.getArrayList().get(i);
+                                                        System.out.println(aux.getSerie());
+                                                        
                 Element Serie= new Element("Serie");
                 Serie.setText(aux.getSerie());
                 Element Descripcion= new Element("Descripcion");
@@ -138,9 +137,11 @@ public class ArchivosXML {
                 TipoInstrumento.addContent(nombre);
                 TipoInstrumento.addContent(unidad);
                 ////////////////////////////////////////////////////////////////
+                
                 Element Calibraciones = new Element("Calibraciones");
-                Element cali = new Element("cali");  
-                for (int j = 0; j < aux.getCalibracionesL().getList().tamano(); j++){
+                Element cali;
+                for (int j = 0; j < aux.getCalibracionesL().getList().getCalibraciones().size(); j++){
+                    cali = new Element("cali");
                     Calibracion auxCali=null;
                     auxCali=aux.getCalibracionesL().getElementoPorPos(j);
                     
@@ -154,10 +155,11 @@ public class ArchivosXML {
                     cantMediciones.setText(Integer.toString(auxCali.getCantMediciones()));
                     ////////////////////////////////////////////////////////////////
                     Element mediciones = new Element("mediciones");
-                    Element medi = new Element("medi");
-                    for(int m=0;m<aux.getCalibracionesL().getList().getCalibraciones().get(j).getMedicionesL().getMediciones().getMediciones().size();m++){
+                    Element medi; 
+                    for(int m=0;m<auxCali.getCantMediciones();m++){
+                       medi = new Element("medi");
                        Medicion auxMedi=null;
-                       auxMedi=aux.getCalibracionesL().getList().getCalibraciones().get(j).getMedicionesL().getMediciones().get(m);
+                       auxMedi=auxCali.getMedicionesL().getMediciones().get(m);
                        
                         Element numeroM = new Element("numeroM");
                         numeroM.setText(Integer.toString(auxMedi.getNumero()));
@@ -188,7 +190,9 @@ public class ArchivosXML {
                 instru.addContent(Tolerancia);
                     instru.addContent(TipoInstrumento);
                         instru.addContent(Calibraciones);
-                Instrumentos.addContent(instru);
+                     System.out.println("1okay");   
+                RootInstrumentos.addContent(instru);
+                System.out.println("2okay");
             }
             XMLOutputter xml = new XMLOutputter();
             xml.setFormat(Format.getPrettyFormat());
