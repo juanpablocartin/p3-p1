@@ -414,6 +414,7 @@ public class Controladora implements ActionListener {//lililil
 
             }
         }
+        //
 //--------------------------------------------------------------------------------
         if (e.getSource().equals(this.PanInstru.getbReporte())) {
             try {
